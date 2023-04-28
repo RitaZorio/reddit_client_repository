@@ -1,10 +1,13 @@
 import React from "react";
+import '../../Styles/index.css';
+import { Link } from "react-router-dom";
+
 
 export const Comment = ()=>{
     return(
-        <div>
-            {/*Username maybe can be a link to the user profile */}
-            <p>@Username</p>
+        <div className="comment">
+          {/*Add later link to the user profile */} 
+            <Link className="user link">@Username</Link>
             <p>Comment content displayed here</p>
         </div>
     )

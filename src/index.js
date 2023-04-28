@@ -5,14 +5,15 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route} from 'react-router-dom';
 import {Navbar} from './Features/navbar/Navbar.js';
 import { Body } from './Features/body/Body';
+import './Styles/index.css';
 
 //Root component will render components that should be visible in all routes
 const Root = () =>{
   return (
-    <>
+    <div id="body-container">
     <Navbar/>
     <Body/>
-    </>
+    </div>
   )
 };
 
