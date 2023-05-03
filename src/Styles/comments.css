@@ -1,0 +1,19 @@
+
+/*COMMENTS */
+
+.comment-container{
+    margin: 1.2rem 0 1.2rem 0;
+  }
+  .comment{
+    display: flex;
+    flex-direction: row;
+    background-color: whitesmoke;
+    align-items: center;
+    margin-top: 5px;
+  }
+  
+  .user{
+    margin: 0 8px;
+    color:rgba(0, 0, 0, 0.55)
+  
+  }

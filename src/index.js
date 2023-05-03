@@ -1,21 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './Styles/index.css';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route} from 'react-router-dom';
-import {Navbar} from './Features/navbar/Navbar.js';
-import { Body } from './Features/body/Body';
+import { Provider } from 'react-redux';
 import './Styles/index.css';
-
-//Root component will render components that should be visible in all routes
-const Root = () =>{
-  return (
-    <div id="body-container">
-    <Navbar/>
-    <Body/>
-    </div>
-  )
-};
+import store from './Store.js';
+import Root from './Root.js';
 
 //Defines and initializes appRouter object
 const appRouter = createBrowserRouter(
@@ -32,11 +22,14 @@ const appRouter = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={appRouter} >
-    <Root/>
-    </RouterProvider>
-  </React.StrictMode>
+  <RouterProvider router={appRouter} >
+    <Provider store={store}>
+      <Root/>
+     </Provider>
+  </RouterProvider>
+     </React.StrictMode>
 );
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

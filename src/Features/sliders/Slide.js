@@ -1,6 +1,6 @@
 import React from "react";
 import { IMG } from "../../Mocks/multimedia";
-import '../../Styles/index.css';
+import '../../Styles/sliders.css';
 import { Link } from "react-router-dom";
 
 //right now this component return mock imgs. When the API is set up, probably will return img passed by Sliders as prop

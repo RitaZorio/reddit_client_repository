@@ -1,5 +1,5 @@
 import React from "react";
-import '../../Styles/index.css';
+import '../../Styles/comments.css';
 import { Link } from "react-router-dom";
 
 

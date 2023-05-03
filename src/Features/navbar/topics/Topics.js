@@ -1,6 +1,7 @@
 import React from "react";
 import {Topic} from './Topic';
-import '../../../Styles/index.css';
+import '../../../Styles/navbar.css';
+
 
 export const Topics = () =>{
     return (
