@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { ICONS, IMG } from "../../Mocks/multimedia";
 import '../../Styles/posts.css';
+import '../../Styles/posts.css';
 import { postClass } from "./postsSlice";
 import { Link } from "react-router-dom";
 //Temporarily using Comments. Later comments will be displayed using the Outlet component
