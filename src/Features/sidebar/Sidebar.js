@@ -1,6 +1,6 @@
 import React from "react";
 import { ICONS } from "../../Mocks/multimedia";
-import '../../Styles/index.css';
+import '../../Styles/sidebar.css';
 
 export const Sidebar = ()=>{
     return(

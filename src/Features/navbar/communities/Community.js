@@ -1,6 +1,6 @@
 import React from "react";
 import {thumbnails } from "../../../Mocks/multimedia";
-import '../../../Styles/index.css';
+import '../../../Styles/navbar.css';
 import { Link } from "react-router-dom";
 
 //Right now this component use mock imgs. Will render img an community name from reddits API received by Communities

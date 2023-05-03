@@ -1,6 +1,6 @@
 import React from "react";
 import { Comment } from "./Comment";
-import '../../Styles/index.css';
+import '../../Styles/comments.css';
 
 //will render in Post Outlet component if user clicks comments button
 export const Comments = ()=>{
