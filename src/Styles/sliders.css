@@ -60,6 +60,15 @@
   }
 }
 
+/*add margin to slider container*/
+@media screen and (max-width: 550px){
+  .slider-container{
+   
+    margin: 4vw;
+  }
+
+}
+
 /*Hide slider*/
 @media screen and (max-width: 450px){
   
