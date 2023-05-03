@@ -63,8 +63,7 @@
 /*add margin to slider container*/
 @media screen and (max-width: 550px){
   .slider-container{
-   
-    margin: 4vw;
+       margin: 4vw;
   }
 
 }
