@@ -7,8 +7,34 @@ import { Link } from "react-router-dom";
 import { API_ROOT } from "../../Api/reddit";
 //Temporarily using Comments. Later comments will be displayed using the Outlet component
 import { Comments } from "../comments/Comments";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateScore } from "./postsSlice";
 
 export const Post = ({post, index})=>{
+
+    //local state to update store state
+    const [newScore, setNewScore] = useState(post.score);
+    //keep track of which post we need to modify
+    const postId = post.name;
+    //give access to dispatch fn
+    const dispatch = useDispatch();
+
+    //will increment / drecrement score based on the social button clicked
+    const handleScore = (e) =>{
+       const value = e.target.value;
+       let currentScore = newScore;
+
+       if(value === 'like'){
+        currentScore++;
+        setNewScore (currentScore);
+       } else{
+        currentScore--;
+        setNewScore(currentScore);
+       };
+       //dispatch the action created by updateScore with the new score and post's id so the Store is updated
+       dispatch(updateScore({newScore, postId}));
+    }
 
     return(
             <div className={postClass()}>
@@ -22,9 +48,9 @@ export const Post = ({post, index})=>{
                     <div className="socials-container">
                         <input type="image" src={ICONS.comments.src} className="post-button"/>
                         {/*this will track likes and dislike numbers */}
-                        <p>{post.score}</p>
-                        <input type="image" src={ICONS.like.src} className="post-button"/>
-                        <input type="image" src={ICONS.dislike.src} className="post-button"/>
+                        <p>{newScore}</p>
+                        <input type="image" src={ICONS.like.src} className="post-button" value="like" onClick={handleScore}/>
+                        <input type="image" src={ICONS.dislike.src} className="post-button" value="dislike" onClick={handleScore}/>
                     </div>
                 </div>
                 {/* This will be an Outlet that render comments when comment button clicked/> */}

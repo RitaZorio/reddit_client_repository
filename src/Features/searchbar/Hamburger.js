@@ -3,6 +3,7 @@ import '../../Styles/searchbar.css';
 import { ICONS } from "../../Mocks/multimedia";
 import { Communities } from "../navbar/communities/Communities";
 import {Topics} from '../navbar/topics/Topics';
+import { SearchInput } from "./SearchInput";
 
 export const Hamburger = () =>{
     return (
@@ -15,22 +16,13 @@ export const Hamburger = () =>{
         </div>
         <ul class="menu-items">
           <div id="hidden-search">
-            <input type="text" placeholder="search"/>
-            <button  className="icon" type="submit">
-             <img className="icon" id="icon" src={ICONS.search.src}/>
-            </button>
+            <SearchInput/>
           </div>
           <div className="hidden-topics-container">
-            <h3 className="nav-title">Communities</h3>
-            <li>Community name</li>
-            <li>Community name</li>
-            <li>Community name</li>
+            <Communities/>
           </div>
           <div className="hidden-topics-container">
-            <h3 className="nav-title">Topics</h3>
-            <li>Topic name</li>
-            <li>Topic name</li>
-            <li>Topic name</li>
+            <Topics/>
           </div>
         </ul>
         </>

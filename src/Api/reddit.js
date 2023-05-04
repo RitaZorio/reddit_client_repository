@@ -2,10 +2,10 @@
 //main URL
 export const API_ROOT = 'https://www.reddit.com/';
 
-//Get posts from subreddits
- export const fetchPosts = async (subreddit) =>{
-  //fetch using the subreddit value as endopoint
-  const response = await fetch(`${API_ROOT}${subreddit}.json`);
+//Get posts
+ export const fetchPosts = async (subreddit, searchTerm) =>{
+  //fetch use subreddit endppoint if searchTerm === '', otherwise use search endpoint + searchTerm
+  const response = await fetch(API_ROOT+ searchTerm === '' ? subreddit+'.json' : API_ROOT+ 'search.json?q='+searchTerm);
   const json = await response.json();
   const postArr = json.data.children;
 

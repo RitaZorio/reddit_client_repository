@@ -1,6 +1,7 @@
 import React from "react";
 import { ICONS } from "../../Mocks/multimedia";
 import '../../Styles/sidebar.css';
+import { Navigate } from 'react-router-dom';
 
 export const Sidebar = ()=>{
     return(
@@ -16,7 +17,7 @@ export const Sidebar = ()=>{
                 </button>
            </div>
            <button id="go-up">
-            Go up
+            Go Up
            </button>
         </div>
     )

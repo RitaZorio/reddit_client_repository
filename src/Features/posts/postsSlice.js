@@ -84,13 +84,14 @@ const postsSlice = createSlice({
     },
     //handle dispatched actions
     reducers: {
-        //    //add comment id to commentsIds array in posts
-        //   addCommentId: (state, action) =>{
-        //   const {link_id, id } = action.payload;
-        //   //post's name and comment's link_id is the same string
-        //   state.posts[link_id].CommentsIds.push(id);
-        //  }
-      },
+      //update score when user clicked like or dislike button
+      updateScore(state, action){
+        //retrieve new score and post's id
+        const { newScore, postId } = action.payload;
+        //update the score of the correct post
+        state.posts[postId].score = newScore;
+      }
+    },
       //handle promise's lifecycle dispatched actions/payload
       extraReducers: (builder) =>{
         builder
@@ -124,22 +125,22 @@ const postsSlice = createSlice({
 
 
 //will create actions/payload for each fetch promise lifecycle, that the extrareducers will handle
-const getPosts = createAsyncThunk(
+export const getPosts = createAsyncThunk(
   'posts/getPosts',
-  async(arg, {dispatch, getState}) =>{
+  async(arg, thunkAPI) =>{
     const payload = await fetchPosts(arg);
     return payload
   }
 );
 
 
-
+//export slice reducer
 export default postsSlice.reducer;
 //create selector for Posts
 export const selectPosts = state => state.posts.posts;
-//create the export for the action creators
-export const addPost = postsSlice.actions.addPost;
-export const addCommentId = postsSlice.actions.addCommentId;
+//export action creator
+export const updateScore = postsSlice.actions.updateScore;
+
 
 
 //will return randomly a class to apply different styles in css to the posts
