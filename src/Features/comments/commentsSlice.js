@@ -5,7 +5,32 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 const CommentsSlice = createSlice({
 name: 'comments',
 initialState: {
-    comments: {},
+    comments: {
+      '01':{
+        author: 'K_yetano',
+        id: '01',
+        link_id: 'post-name',
+        body: 'Me parece fatal'
+      },
+      '02':{
+        author: 'Shurmano',
+        id: '02',
+        link_id: 'post-name',
+        body: 'Ola k ase jaja salu2'
+      },
+      '03':{
+        author:'Definately_not_a_bot',
+        id:'03',
+        link_id: 'post-name',
+        body: 'You just WINNED AN IPHONE! Click >>Here<< RIGHT NOW RUN!!!'
+      },
+      '04':{
+        author: 'Quality_manager',
+        id:'04',
+        link_id:'post-name',
+        body: 'Just checking what happens when a comment is rather long... is this okey??? are we sure?? For reals? Pinkie promise?'
+      }
+    },
     isLoading: false,
     hasError: false
 },

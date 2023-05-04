@@ -156,7 +156,7 @@
 }
 
 /*Searchbar logo and title*/
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 550px){
 
   .logo{
     max-width: auto;

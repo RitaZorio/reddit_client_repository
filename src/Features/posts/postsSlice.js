@@ -5,7 +5,80 @@ import { fetchPosts } from "../../Api/reddit";
 const postsSlice = createSlice({
     name: 'posts',
     initialState: {
-        posts: {},
+        posts: {
+          '06':{
+            url: 'https://i.ibb.co/mcxxMDT/pexels-anna-shvets-4588065.jpg',
+            title: 'This post is not valid',
+            name: '06',
+            score: '12345',
+            author: 'Second actor Bob',
+            permalink: 'url',
+            is_self: true,
+            is_video: false
+          },
+          '07':{
+            url: 'https://i.ibb.co/mcxxMDT/pexels-anna-shvets-4588065.jpg',
+            title: 'This post is not valid',
+            name: '07',
+            score: '12345',
+            author: 'Grumpy cat',
+            permalink: 'url',
+            is_self: false,
+            is_video: true
+          },
+          '01': {
+            url: 'https://i.ibb.co/mcxxMDT/pexels-anna-shvets-4588065.jpg',
+            title: 'Rabbits are Trendy',
+            name:'01',
+            score:'123',
+            author:'deipnofobica',
+            permalink: 'url',
+            is_self: false,
+            is_video:false
+        },
+        '02': {
+            url: 'https://i.ibb.co/w72SMHN/pexels-markus-spiske-3970330.jpg',
+            title: 'Stock martket sky-rocketing',
+            name:'02',
+            score:'34',
+            author:'Alpo',
+            permalink: 'url',
+            is_self: false,
+            is_video:false
+        },
+        '03': {
+            url: 'https://i.ibb.co/y6x6syN/pexels-pixabay-163036.jpg',
+            title: 'New Super Mario Bros. movie is out',
+            name: '03',
+            score: '256',
+            author: 'Miyamoto',
+            permalink: 'url',
+            is_self: false,
+            is_video:false
+        },
+        '04': {
+            url: 'https://i.ibb.co/kc59YZH/pexels-redrecords-2872418.jpg',
+            title: 'Fan interview outside sport cars Grand Prix',
+            name: '04',
+            score: '3',
+            author: 'Jon_Sistiaga2',
+            permalink: 'url',
+            is_self: false,
+            is_video:false
+
+        },
+        '05': {
+            url: 'https://i.ibb.co/cL8Dkb9/pexels-yaroslav-shuraev-8499870.jpg',
+            title: 'Best raincoats for dogs',
+            name: '05',
+            score: 48,
+            author: 'Zahi',
+            permalink: 'url',
+            is_self: false,
+            is_video:false
+
+        },
+      },
         isLoading: false,
         hasError: false
     },
@@ -29,32 +102,35 @@ const postsSlice = createSlice({
                 .addCase(getPosts.fulfilled, (state, action) =>{
                   state.isLoading = false;
                   state.hasError = false;
-                  const {author, name, score, title, url, permalink} = action.payload;
-                  //add new post to posts obj, indexed by name if promise was successfull
+                  const {author, name, score, title, url, permalink, is_self, is_video} = action.payload;
+                  //add new post to posts state, indexed by name if promise was successfull
                   state.posts[name] = {
                       author: author,
                       name: name,
                       score: score,
                       title: title,
                       url: url,
-                      permalink: permalink
+                      permalink: permalink,
+                      is_self: is_self,
+                      is_video: is_video
                     };
                   })
                 .addCase(getPosts.rejected, (state, action) =>{
                   state.isLoading = false;
                   state.hasError = true;
                 })
-              }
-      });
+        }
+});
 
 
 //will create actions/payload for each fetch promise lifecycle, that the extrareducers will handle
 const getPosts = createAsyncThunk(
   'posts/getPosts',
-  async (arg, {dispatch, getState}) =>{
+  async(arg, {dispatch, getState}) =>{
     const payload = await fetchPosts(arg);
     return payload
-  });
+  }
+);
 
 
 

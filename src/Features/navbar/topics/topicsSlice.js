@@ -5,19 +5,19 @@ const topicsSlice = createSlice({
     initialState: {
         topics: {
             gaming: {
-                name: 'Gaming',
+                title: 'Gaming',
                 url: '/t/gaming/',
-                icon: 'https://i.ibb.co/ssQYD9c/icons8-game-controller-64.png'
+                icon_img: 'https://i.ibb.co/ssQYD9c/icons8-game-controller-64.png'
             },
             celebrity: {
-                name: 'Celebrity',
+                title: 'Celebrity',
                 url: '/t/celebrity/',
-                icon: 'https://i.ibb.co/VHscXdb/icons8-celebrity-64.png'
+                icon_img: 'https://i.ibb.co/VHscXdb/icons8-celebrity-64.png'
             },
             sports: {
-                name: 'Sports',
+                title: 'Sports',
                 url: '/t/celebrity',
-                icon: 'https://i.ibb.co/wgxQb4X/icons8-sport-100.png'
+                icon_img: 'https://i.ibb.co/wgxQb4X/icons8-sport-100.png'
             }
         }
     },

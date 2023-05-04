@@ -1,11 +1,43 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchCommunities } from "../../../Api/reddit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { IMG } from "../../../Mocks/multimedia";
 
 export const communitiesSlice = createSlice({
     name: 'communities',
     initialState:{
-        communities:{},
+        communities:{
+            '05':{
+                id:'05',
+                title: 'this is a post thread',
+                icon_img: '',
+                url: 'url'
+            },
+            '01':{
+                id: '01',
+                title: 'Animal Lovers', 
+                icon_img: 'https://i.ibb.co/KDy8zpH/guinea-portrait.jpg',
+                url: 'url'
+            },
+            '02': {
+                id: '02',
+                title: 'Crypto Bros',
+                icon_img: 'https://i.ibb.co/KDy8zpH/guinea-portrait.jpg',
+                url:'url'
+            },
+            '03': {
+                id: '03',
+                title:'Leyend of Zelda',
+                icon_img: 'https://i.ibb.co/KDy8zpH/guinea-portrait.jpg',
+                url:'url'
+            },
+            '04':{
+                id: '04',
+                title: 'Should\'nt show up',
+                icon_img: 'emptyString',
+                url:'url'
+            }
+        },
         isLoading: false,
         hasError: false
     }, 
@@ -47,16 +79,7 @@ const getCommunities = createAsyncThunk(
     }
 );
 
-//create selector for communities excluding the ones without icon_img
-export const selectCommunities = state =>{
-    const allCommunities = state.communities.communities;
-    let selectedCommunities = [];
-    Object.values(allCommunities).map( community =>{
-        if(community.icon_img !== ""){
-            selectedCommunities.push(community)
-        };
-      return selectedCommunities
-    });
-};
+//create selector for communities
+export const selectCommunities = state => state.communities.communities;
 
 export default communitiesSlice.reducer;

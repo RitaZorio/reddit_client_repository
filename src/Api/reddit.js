@@ -9,7 +9,7 @@ export const API_ROOT = 'https://www.reddit.com/';
   const json = await response.json();
   const postArr = json.data.children;
 
-  return postArr.map( post => post.data);
+  return postArr.map(post => post.data);
 };
 
 //get subreddits to populate Communities component
@@ -18,7 +18,7 @@ export const fetchCommunities = async () =>{
  const json = await response.json();
  const subredditArr = json.data.children;
   
-  return subredditArr.map( subreddit => subreddit.data);
+  return subredditArr.map(subreddit => subreddit.data);
 };
 
 
@@ -29,5 +29,15 @@ export const fetchComments = async ({permalink}) =>{
       const json = await response.json();
       const commentsArr = json[1].data.children;
 
-      return  commentsArr.map( comment => comment.data);
+      return  commentsArr.map(comment => comment.data);
 };
+
+
+//get trending posts to make the trending slides
+export const fetchSlides = async () =>{
+  const response = await fetch(`${API_ROOT}r/popular/hot.json`);
+  const json = await response.json();
+  const slideArr = json.data.children;
+
+  return slideArr.map(slide => slide.data);
+}
