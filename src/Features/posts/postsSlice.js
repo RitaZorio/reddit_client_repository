@@ -14,7 +14,8 @@ const postsSlice = createSlice({
             author: 'Second actor Bob',
             permalink: 'url',
             is_self: true,
-            is_video: false
+            is_video: false,
+            show_Comments: false
           },
           '07':{
             url: 'https://i.ibb.co/mcxxMDT/pexels-anna-shvets-4588065.jpg',
@@ -24,7 +25,8 @@ const postsSlice = createSlice({
             author: 'Grumpy cat',
             permalink: 'url',
             is_self: false,
-            is_video: true
+            is_video: true,
+            show_Comments: false
           },
           '01': {
             url: 'https://i.ibb.co/mcxxMDT/pexels-anna-shvets-4588065.jpg',
@@ -34,7 +36,8 @@ const postsSlice = createSlice({
             author:'deipnofobica',
             permalink: 'url',
             is_self: false,
-            is_video:false
+            is_video:false,
+            show_Comments: false
         },
         '02': {
             url: 'https://i.ibb.co/w72SMHN/pexels-markus-spiske-3970330.jpg',
@@ -44,7 +47,8 @@ const postsSlice = createSlice({
             author:'Alpo',
             permalink: 'url',
             is_self: false,
-            is_video:false
+            is_video:false,
+            show_Comments: false
         },
         '03': {
             url: 'https://i.ibb.co/y6x6syN/pexels-pixabay-163036.jpg',
@@ -54,7 +58,8 @@ const postsSlice = createSlice({
             author: 'Miyamoto',
             permalink: 'url',
             is_self: false,
-            is_video:false
+            is_video:false,
+            show_Comments: false
         },
         '04': {
             url: 'https://i.ibb.co/kc59YZH/pexels-redrecords-2872418.jpg',
@@ -64,7 +69,8 @@ const postsSlice = createSlice({
             author: 'Jon_Sistiaga2',
             permalink: 'url',
             is_self: false,
-            is_video:false
+            is_video:false,
+            show_Comments: false
 
         },
         '05': {
@@ -75,7 +81,8 @@ const postsSlice = createSlice({
             author: 'Zahi',
             permalink: 'url',
             is_self: false,
-            is_video:false
+            is_video:false,
+            show_Comments: false
 
         },
       },
@@ -90,6 +97,13 @@ const postsSlice = createSlice({
         const { newScore, postId } = action.payload;
         //update the score of the correct post
         state.posts[postId].score = newScore;
+      },
+      updateShowComments(state, action){
+        //retrieve new clicked status
+        const{ clikedStatus, postId } = action.payload;
+        //update the show_Comments with this cliked status
+        state.posts[postId].show_Comments = clikedStatus;
+
       }
     },
       //handle promise's lifecycle dispatched actions/payload
@@ -113,7 +127,8 @@ const postsSlice = createSlice({
                       url: url,
                       permalink: permalink,
                       is_self: is_self,
-                      is_video: is_video
+                      is_video: is_video,
+                      show_Comments: false
                     };
                   })
                 .addCase(getPosts.rejected, (state, action) =>{
@@ -138,9 +153,9 @@ export const getPosts = createAsyncThunk(
 export default postsSlice.reducer;
 //create selector for Posts
 export const selectPosts = state => state.posts.posts;
-//export action creator
+//export action creators
 export const updateScore = postsSlice.actions.updateScore;
-
+export const updateShowComments = postsSlice.actions.updateShowComments;
 
 
 //will return randomly a class to apply different styles in css to the posts

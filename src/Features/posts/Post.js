@@ -10,6 +10,7 @@ import { Comments } from "../comments/Comments";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateScore } from "./postsSlice";
+import { updateShowComments } from "./postsSlice";
 
 export const Post = ({post, index})=>{
 
@@ -36,6 +37,17 @@ export const Post = ({post, index})=>{
        dispatch(updateScore({newScore, postId}));
     }
 
+     //local state to track if comments are shown or not
+     const [clikedStatus, setClikedStatus]= useState(post.show_Comments)
+
+     //will toggle clickedStatus on each click
+    const handleComments = ()=>{
+        setClikedStatus(!clikedStatus);
+        dispatch(updateShowComments({clikedStatus, postId}));
+    }
+
+
+
     return(
             <div className={postClass()}>
                 <div key={index} className="post-frame">
@@ -46,7 +58,7 @@ export const Post = ({post, index})=>{
                         <Link to={`${API_ROOT}user/${post.author}`} className="user-name link">@{post.author}</Link>   
                     </div>   
                     <div className="socials-container">
-                        <input type="image" src={ICONS.comments.src} className="post-button"/>
+                        <input type="image" src={ICONS.comments.src} className="post-button" onClick={handleComments}/>
                         {/*this will track likes and dislike numbers */}
                         <p>{newScore}</p>
                         <input type="image" src={ICONS.like.src} className="post-button" value="like" onClick={handleScore}/>
@@ -54,7 +66,7 @@ export const Post = ({post, index})=>{
                     </div>
                 </div>
                 {/* This will be an Outlet that render comments when comment button clicked/> */}
-                <Comments permalink={post.permalink}/>
+                <Comments permalink={post.permalink} showComments={clikedStatus}/>
             </div>
     );
 }
