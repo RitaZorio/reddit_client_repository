@@ -5,11 +5,15 @@
  grid-row: 2;
   }
 
-
+h2{
+  margin: 0;
+}
   .slide-img{
+    /*display: block erase blanl space under the img*/
+    display: block;
     width:100%;
     max-width: 300px;
-    max-height:auto;
+    max-height: 200px;
     transition-duration: 0.4s;
     flex-shrink: 3;
   }
@@ -38,8 +42,9 @@
     font-size: bold;
     margin: 0;
     position: absolute;
-    bottom: 1rem;
+    bottom: 0.3rem;
     left: 0.5rem;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   }
   
 /*********************************************************************************/
