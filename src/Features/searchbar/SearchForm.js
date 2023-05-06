@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { ICONS } from "../../Mocks/multimedia";
 import '../../Styles/searchbar.css';
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { useState } from "react";
-import { getPosts} from "../posts/postsSlice";
-import { setStoreSearchTerm } from "./searchSlice";
+import { setStoreSearchTerm, selectSearchTerm } from "./searchSlice";
+import { updateDispatchTrigger, updateGetPostsTerm } from "../posts/postsSlice";
+
 
 export const SearchForm = () =>{
     //import dispatch to dispatch actions
@@ -12,25 +13,29 @@ export const SearchForm = () =>{
 
      //create a local state with the value of the store
      const [ searchTerm, setSearchTerm ] = useState('');
-    
+     //get the current searchTerm from store 
+     const searchTermStore = useSelector(selectSearchTerm)
+
      useEffect(()=>{
-        dispatch(setStoreSearchTerm(searchTerm));
-     }, [searchTerm]);
+        dispatch(updateGetPostsTerm(searchTermStore));
+        dispatch(updateDispatchTrigger());
+     }, [searchTermStore]);
 
      //handle change in input field and updates state
      const handleChange = (e) =>{
          const input = e.target.value;
          const newInput = input.replace(/ /g, '%');
          setSearchTerm(newInput);
+    
      }
  
      //handle search submit and triggers a fetchPost with searchTerm 
      const handleSubmit = (e)=>{
          e.preventDefault();
-         //esto es asi???  CHECCCCKKKKK
-         dispatch(getPosts(searchTerm));
-         //clear the searchTerm state after dispatching the action to retrieve posts
+         dispatch(setStoreSearchTerm(searchTerm));
+        //clear the searchTerm state after dispatching the action to retrieve posts
         setSearchTerm('');
+        
       }
 
     return (

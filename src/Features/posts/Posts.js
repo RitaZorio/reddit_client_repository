@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import '../../Styles/posts.css';
 import  {Post} from './Post';
-import { useSelector } from "react-redux";
-import { selectPosts } from "./postsSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { selectPosts, selectDispatchTrigger, selectGetPostsTerm} from "./postsSlice";
+import { getPosts } from "./postsSlice";
+
 
 
 //Right now this component is return mock posts. Probably will return posts with the info from the API received through PostSlice
 export const Posts = ()=>{
+
+  //make dispatch available
+  const dispatch = useDispatch();
+
+  //retrieves info from the PostsSlice in store
+  const getPostsArg = useSelector(selectGetPostsTerm);
+  const dispatchTriggerState = useSelector(selectDispatchTrigger);
+
+//Triggers getPosts() each time dispatchTriggerState (from store) changes  
+useEffect(()=>{
+ dispatch(getPosts(getPostsArg));
+}, [dispatchTriggerState]);
 
 //select all post from state
 const posts = useSelector(selectPosts);
