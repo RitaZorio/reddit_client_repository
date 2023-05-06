@@ -8,6 +8,7 @@ import slidersSlice from "./Features/sliders/slidersSlice";
 import searchSlice from "./Features/searchbar/searchSlice";
 
 
+
 const store = configureStore({
   reducer: {
     posts: postsSlice,
@@ -15,7 +16,7 @@ const store = configureStore({
     communities: communitiesSlice,
     topics: topicsSlice,
     slides: slidersSlice, 
-    searchTerm: searchSlice
+    searchTerm: searchSlice,
   }
 });
 
