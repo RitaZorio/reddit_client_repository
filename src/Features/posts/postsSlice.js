@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchPosts } from "../../Api/reddit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 //create the slice
 const postsSlice = createSlice({
@@ -87,7 +87,11 @@ const postsSlice = createSlice({
         },
       },
         isLoading: false,
-        hasError: false
+        hasError: false,
+        //Triggers getPosts() in Post component when changed
+        dispatchTrigger: 0,
+        //Dinamic argument for getPosts(). SearchForm and navbar components can change it
+        getPostsTerm: ''
     },
     //handle dispatched actions
     reducers: {
@@ -98,12 +102,17 @@ const postsSlice = createSlice({
         //update the score of the correct post
         state.posts[postId].score = newScore;
       },
+      updateDispatchTrigger(state, action){
+          state.dispatchTrigger += 1;
+      },
+      updateGetPostsTerm(state, action){
+        state.getPostsTerm = action.payload;
+
       updateShowComments(state, action){
         //retrieve new clicked status
         const{ clikedStatus, postId } = action.payload;
         //update the show_Comments with this cliked status
         state.posts[postId].show_Comments = clikedStatus;
-
       }
     },
       //handle promise's lifecycle dispatched actions/payload
@@ -142,7 +151,7 @@ const postsSlice = createSlice({
 //will create actions/payload for each fetch promise lifecycle, that the extrareducers will handle
 export const getPosts = createAsyncThunk(
   'posts/getPosts',
-  async(arg, thunkAPI) =>{
+  async(arg, {dispatch, getState}) =>{
     const payload = await fetchPosts(arg);
     return payload
   }
@@ -151,11 +160,15 @@ export const getPosts = createAsyncThunk(
 
 //export slice reducer
 export default postsSlice.reducer;
-//create selector for Posts
+//create selectors
 export const selectPosts = state => state.posts.posts;
+
+export const selectDispatchTrigger = state => state.posts.dispatchTrigger;
+export const selectGetPostsTerm = state => state.posts.getPostsTerm;
 //export action creators
-export const updateScore = postsSlice.actions.updateScore;
-export const updateShowComments = postsSlice.actions.updateShowComments;
+export const {updateScore, updateDispatchTrigger, updateGetPostsTerm } = postsSlice.actions;
+
+
 
 
 //will return randomly a class to apply different styles in css to the posts

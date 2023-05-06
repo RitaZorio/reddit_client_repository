@@ -2,14 +2,26 @@ import React from "react";
 import {thumbnails} from "../../../Mocks/multimedia";
 import '../../../Styles/navbar.css';
 import { Link } from "react-router-dom";
-import { API_ROOT } from "../../../Api/reddit";
+import { useDispatch } from "react-redux";
+import { updateDispatchTrigger, updateGetPostsTerm } from "../../posts/postsSlice";
 
 export const Topic = ({topic}) =>{
+ 
+    //makes dispatch() available
+    const dispatch = useDispatch();
+    //get the subreddit url from topic object
+    const subreddit = topic.url;
+
+    //update getPostsTerm and dispatchTrigger from postSlice
+    const handleClick = ()=>{
+        dispatch(updateGetPostsTerm(subreddit));
+        dispatch(updateDispatchTrigger());
+    };
 
     return (
         <div className="mini-container">
             <img className="thumbnail-topic" src={topic.icon_img}/>
-            <Link to={topic.url}className="link">{topic.title}</Link>
+            <Link onClick={handleClick}className="link">{topic.title}</Link>
         </div>
     )
 }

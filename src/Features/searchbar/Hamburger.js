@@ -3,7 +3,7 @@ import '../../Styles/searchbar.css';
 import { ICONS } from "../../Mocks/multimedia";
 import { Communities } from "../navbar/communities/Communities";
 import {Topics} from '../navbar/topics/Topics';
-import { SearchInput } from "./SearchInput";
+import { SearchForm } from "./SearchForm";
 
 export const Hamburger = () =>{
     return (
@@ -16,7 +16,7 @@ export const Hamburger = () =>{
         </div>
         <ul class="menu-items">
           <div id="hidden-search">
-            <SearchInput/>
+            <SearchForm/>
           </div>
           <div className="hidden-topics-container">
             <Communities/>
