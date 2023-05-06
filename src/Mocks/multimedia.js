@@ -58,7 +58,6 @@ export const IMG = {
         title: 'Best raincoats for dogs',
         alt: 'Woman and dog both in bright colored raincoats standing in rain'
     },
-
 };
 
 export const thumbnails = {

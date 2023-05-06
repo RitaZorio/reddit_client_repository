@@ -10,6 +10,7 @@ import { Comments } from "../comments/Comments";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateScore } from "./postsSlice";
+import { updateShowComments } from "./postsSlice";
 
 export const Post = ({post, index})=>{
 
@@ -42,7 +43,6 @@ export const Post = ({post, index})=>{
         dispatch(updateShowComments({clikedStatus, postId}));
     }
 
-
     return(
             <div className={postClass()}>
                 <div key={index} className="post-frame">
@@ -61,7 +61,7 @@ export const Post = ({post, index})=>{
                     </div>
                 </div>
                 {/* This will be an Outlet that render comments when comment button clicked/> */}
-                <Comments permalink={post.permalink}/>
+                <Comments permalink={post.permalink} showComments={clikedStatus}/>
             </div>
     );
 }

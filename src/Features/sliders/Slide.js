@@ -13,4 +13,4 @@ export const Slide = ({slide})=>{
             <p className="slide-title">{slide.title}</p>
         </div>
     )
-}
+};
