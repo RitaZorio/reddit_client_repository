@@ -34,7 +34,14 @@ export const Post = ({post, index})=>{
        };
        //dispatch the action created by updateScore with the new score and post's id so the Store is updated
        dispatch(updateScore({newScore, postId}));
+    };
+
+    //will toggle clickedStatus on each click
+    const handleComments = ()=>{
+        setClikedStatus(!clikedStatus);
+        dispatch(updateShowComments({clikedStatus, postId}));
     }
+
 
     return(
             <div className={postClass()}>
@@ -46,7 +53,7 @@ export const Post = ({post, index})=>{
                         <Link to={`${API_ROOT}user/${post.author}`} className="user-name link">@{post.author}</Link>   
                     </div>   
                     <div className="socials-container">
-                        <input type="image" src={ICONS.comments.src} className="post-button"/>
+                        <input type="image" src={ICONS.comments.src} className="post-button" onClick={handleComments}/>
                         {/*this will track likes and dislike numbers */}
                         <p>{newScore}</p>
                         <input type="image" src={ICONS.like.src} className="post-button" value="like" onClick={handleScore}/>

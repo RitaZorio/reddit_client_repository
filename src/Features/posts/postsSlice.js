@@ -100,6 +100,13 @@ const postsSlice = createSlice({
       },
       updateGetPostsTerm(state, action){
         state.getPostsTerm = action.payload;
+      },
+      updateShowComments(state, action){
+        //retrieve new clicked status
+        const{ clikedStatus, postId } = action.payload;
+        //update the show_Comments with this cliked status
+        state.posts[postId].show_Comments = clikedStatus;
+
       }
     },
       //handle promise's lifecycle dispatched actions/payload
