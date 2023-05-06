@@ -3,14 +3,27 @@
 export const API_ROOT = 'https://www.reddit.com/';
 
 //Get posts
- export const fetchPosts = async (subreddit, searchTerm) =>{
-  //fetch use subreddit endppoint if searchTerm === '', otherwise use search endpoint + searchTerm
-  const response = await fetch(API_ROOT+ searchTerm === '' ? subreddit+'.json' : API_ROOT+ 'search.json?q='+searchTerm);
-  const json = await response.json();
-  const postArr = json.data.children;
+ export const fetchPosts= async (arg) =>{
+//checks if arg is a subreddit or a searchTerm
+//if it doesn't include 'search.json?q=' is a subreddit
+  if(!arg.includes('search.json?q=')){
+    //fetch will use subreddit endppoint to fetch posts
+    const response = await fetch(`${API_ROOT}${arg}.json`);
+    const json = await response.json();
+    const postArr = json.data.children;
 
-  return postArr.map(post => post.data);
+    return postArr.map(post => post.data);
+  }else{
+    //fetch will use search endppoint to fetch posts
+    const response = await fetch(`${API_ROOT}${arg}`);
+    const json = await response.json();
+    const postArr = json.data.children;
+
+    return postArr.map(post => post.data);
+  }
+  
 };
+
 
 //get subreddits to populate Communities component
 export const fetchCommunities = async () =>{

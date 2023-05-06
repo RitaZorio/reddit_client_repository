@@ -3,7 +3,7 @@ import { ICONS } from "../../Mocks/multimedia";
 import '../../Styles/searchbar.css';
 import { thumbnails } from "../../Mocks/multimedia";
 import { Hamburger } from "./Hamburger";
-import { SearchInput } from "./SearchInput";
+import { SearchForm } from "./SearchForm";
 
 
 
@@ -18,7 +18,7 @@ export const Searchbar = () =>{
                 <p>Reddit Client App</p>
             </div>
             <div className="search">
-                <SearchInput />
+                <SearchForm />
             </div>
         </div>
     )

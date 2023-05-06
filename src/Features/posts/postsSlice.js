@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchPosts } from "../../Api/reddit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 //create the slice
 const postsSlice = createSlice({
