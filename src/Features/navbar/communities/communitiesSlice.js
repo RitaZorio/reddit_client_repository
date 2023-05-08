@@ -6,38 +6,7 @@ import { IMG } from "../../../Mocks/multimedia";
 export const communitiesSlice = createSlice({
     name: 'communities',
     initialState:{
-        communities:{
-            '05':{
-                id:'05',
-                title: 'this is a post thread',
-                icon_img: '',
-                url: 'url'
-            },
-            '01':{
-                id: '01',
-                title: 'Animal Lovers', 
-                icon_img: 'https://i.ibb.co/KDy8zpH/guinea-portrait.jpg',
-                url: 'url'
-            },
-            '02': {
-                id: '02',
-                title: 'Crypto Bros',
-                icon_img: 'https://i.ibb.co/KDy8zpH/guinea-portrait.jpg',
-                url:'url'
-            },
-            '03': {
-                id: '03',
-                title:'Leyend of Zelda',
-                icon_img: 'https://i.ibb.co/KDy8zpH/guinea-portrait.jpg',
-                url:'url'
-            },
-            '04':{
-                id: '04',
-                title: 'Should\'nt show up',
-                icon_img: 'emptyString',
-                url:'url'
-            }
-        },
+        communities:{},
         isLoading: false,
         hasError: false
     }, 
@@ -52,13 +21,18 @@ export const communitiesSlice = createSlice({
                 .addCase(getCommunities.fulfilled, (state, action) =>{
                   state.isLoading = false;
                   state.hasError = false;
-                  const {icon_img, title, url, id} = action.payload;
-                     state.communities[id] = {
-                                id: id, 
-                                icon_img: icon_img,
-                                title: title, 
-                                url: url
-                                };
+                  const subredditArr = action.payload;
+                  subredditArr.map( subreddit =>{
+                    const {icon_img, title, url, id} = subreddit.data;
+                    state.communities[id] = {
+                        id: id, 
+                        icon_img: icon_img,
+                        title: title, 
+                        url: url
+                        };
+                  })
+                  
+                     
                 })
                 .addCase(getCommunities.rejected, (state, action) =>{
                     state.isLoading = false;
@@ -71,7 +45,7 @@ export const communitiesSlice = createSlice({
 
 //will create actions/payload for each fetch promise lifecycle, that the extrareducers will handle
 //will populate communities navbar
-const getCommunities = createAsyncThunk(
+export const getCommunities = createAsyncThunk(
     'communities/getCommunities',
     async (arg, {dispatch, getState}) =>{
     const payload = await fetchCommunities();

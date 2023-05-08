@@ -22,7 +22,7 @@ code {
 #body-container{
   display: grid;
   grid-template-columns: 1.3fr repeat(4, 2fr);
-  grid-template-rows: 1.5% 5% 1fr;
+  grid-template-rows: 100px 250px 1fr;
   row-gap: 8px;
   column-gap: 20px;
 }

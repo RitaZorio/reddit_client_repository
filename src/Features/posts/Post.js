@@ -29,13 +29,18 @@ export const Post = ({post, index})=>{
        if(value === 'like'){
         currentScore++;
         setNewScore (currentScore);
+        //dispatch the action created by updateScore with the new score and post's id so the Store is updated
+       dispatch(updateScore({currentScore, postId}));
        } else{
         currentScore--;
         setNewScore(currentScore);
+        //dispatch the action created by updateScore with the new score and post's id so the Store is updated
+       dispatch(updateScore({currentScore, postId}));
        };
-       //dispatch the action created by updateScore with the new score and post's id so the Store is updated
-       dispatch(updateScore({newScore, postId}));
+       
     };
+
+    const [ clikedStatus, setClikedStatus] = useState(false);
 
     //will toggle clickedStatus on each click
     const handleComments = ()=>{
@@ -65,4 +70,3 @@ export const Post = ({post, index})=>{
             </div>
     );
 }
-

@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {Community} from './Community';
 import  '../../../Styles/navbar.css';
-import { selectCommunities } from "./communitiesSlice";
-import { useSelector } from "react-redux";
+import { selectCommunities, getCommunities } from "./communitiesSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 
 export const Communities = () => {
+
+//make available dispatch()
+const dispatch = useDispatch();
+//dipatch getCommunities on mounting to get subreddits to populate <Community/>
+useEffect(()=>{
+dispatch(getCommunities());
+},[]);
+
+
 //select all communities retrieved from API
 const communities = useSelector(selectCommunities);
 const communitiesArr = Object.values(communities);
@@ -18,17 +27,16 @@ communitiesArr.map( community =>{
     }
 });
 
-
-     return (
-        <div className="topics-container">
-            <h3 className="nav-title">Communities</h3>
-            {/*create only 3 Community components and pass them a comm obj as props */}
-            {validCommunities.map((comm, index) =>{
-                while(index < 3){
-                return <Community comm={comm}/>
-                }
-              }
-            )}
-        </div>
-    )
+return (
+<div className="topics-container">
+    <h3 className="nav-title">Communities</h3>
+    {/*create only 3 Community components and pass them a comm obj as props */}
+    {validCommunities.map((comm, index) =>{
+        while(index < 3){
+        return <Community comm={comm}/>
+        }
+        }
+    )}
+</div>
+)
 }

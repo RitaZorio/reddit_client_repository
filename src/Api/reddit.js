@@ -12,14 +12,15 @@ export const API_ROOT = 'https://www.reddit.com/';
     const json = await response.json();
     const postArr = json.data.children;
 
-    return postArr.map(post => post.data);
+    return postArr
   }else{
     //fetch will use search endppoint to fetch posts
     const response = await fetch(`${API_ROOT}${arg}`);
     const json = await response.json();
     const postArr = json.data.children;
 
-    return postArr.map(post => post.data);
+    return postArr
+  
   }
   
 };
@@ -31,7 +32,7 @@ export const fetchCommunities = async () =>{
  const json = await response.json();
  const subredditArr = json.data.children;
   
-  return subredditArr.map(subreddit => subreddit.data);
+  return subredditArr
 };
 
 

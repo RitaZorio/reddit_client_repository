@@ -8,7 +8,7 @@ export const searchSlice = createSlice({
     },
     reducers:{
         setStoreSearchTerm(state, action){
-            state.searchTerm = 'search.json?q='+action.payload;
+            state.searchTerm = action.payload;
         }
     }
 });

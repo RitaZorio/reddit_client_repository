@@ -13,26 +13,20 @@ export const SearchForm = () =>{
 
      //create a local state with the value of the store
      const [ searchTerm, setSearchTerm ] = useState('');
-     //get the current searchTerm from store 
-     const searchTermStore = useSelector(selectSearchTerm)
-
-     useEffect(()=>{
-        dispatch(updateGetPostsTerm(searchTermStore));
-        dispatch(updateDispatchTrigger());
-     }, [searchTermStore]);
 
      //handle change in input field and updates state
      const handleChange = (e) =>{
          const input = e.target.value;
-         const newInput = input.replace(/ /g, '%');
-         setSearchTerm(newInput);
-    
-     }
+         setSearchTerm(input);
+    }
  
      //handle search submit and triggers a fetchPost with searchTerm 
      const handleSubmit = (e)=>{
          e.preventDefault();
-         dispatch(setStoreSearchTerm(searchTerm));
+         const newInput = searchTerm.replace(/ /g, '%');
+         dispatch(setStoreSearchTerm(newInput));
+         dispatch(updateGetPostsTerm(newInput));
+         dispatch(updateDispatchTrigger());
         //clear the searchTerm state after dispatching the action to retrieve posts
         setSearchTerm('');
         
