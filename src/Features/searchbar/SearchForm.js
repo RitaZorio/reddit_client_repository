@@ -24,8 +24,9 @@ export const SearchForm = () =>{
      const handleSubmit = (e)=>{
          e.preventDefault();
          const newInput = searchTerm.replace(/ /g, '%');
+         const Qparams = 'search.json?q='+newInput
          dispatch(setStoreSearchTerm(newInput));
-         dispatch(updateGetPostsTerm(newInput));
+         dispatch(updateGetPostsTerm(Qparams));
         //clear the searchTerm state after dispatching the action to retrieve posts
         setSearchTerm('');
         

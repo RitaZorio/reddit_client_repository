@@ -9,19 +9,17 @@ export const Topic = ({topic}) =>{
  
     //makes dispatch() available
     const dispatch = useDispatch();
-    //get the subreddit url from topic object
-    const subreddit = topic.url;
 
     //update getPostsTerm and dispatchTrigger from postSlice
-    const handleClick = ()=>{
-        dispatch(updateGetPostsTerm(subreddit));
-        dispatch(updateDispatchTrigger());
+    const handleClick = (e)=>{
+        const topic = e.target.value;
+        dispatch(updateGetPostsTerm(topic));
     };
 
     return (
         <div className="mini-container">
             <img className="thumbnail-topic" src={topic.icon_img}/>
-            <Link onClick={handleClick}className="link">{topic.title}</Link>
+            <button onClick={handleClick}className="link" value={topic.url}>{topic.title}</button>
         </div>
     )
 }

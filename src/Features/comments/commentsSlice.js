@@ -44,15 +44,18 @@ extraReducers:(builder) =>{
             //add new community to communities obj, indexed by id if promise was successfull
             .addCase(getComments.fulfilled, (state, action) =>{
               state.isLoading = false;
-              state.hasError = false;          
-              const { author, id,  link_id, body } = action.payload;
-              state.comments[id] ={
-                    author: author,
-                    id: id,
-                    link_id: link_id, 
-                    body: body
-                };
-              })
+              state.hasError = false;  
+              const commentsArr = action.payload;    
+              commentsArr.map( comment =>{
+                const { id, author, link_id, body} = comment.data
+                state.comments[id] = {
+                      author: author,
+                      id: id,
+                      link_id: link_id, 
+                      body: body
+                  };
+              })                  
+            })
             .addCase(getComments.rejected, (state, action) =>{
                 state.isLoading = false;
                 state.hasError = true;
@@ -63,7 +66,7 @@ extraReducers:(builder) =>{
 
 //will create actions/payload for each fetch promise lifecycle, that the extrareducers will handle
 //will get comments for
-const getComments = createAsyncThunk(
+export const getComments = createAsyncThunk(
     'comments/getComments',
     async (arg, {dispatch, getState}) =>{
       const payload = await fetchComments(arg);

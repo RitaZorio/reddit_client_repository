@@ -37,12 +37,12 @@ export const fetchCommunities = async () =>{
 
 
 //get comments for each post using the post's permalink url
-//receives the post obj and extracts the permalink value
-export const fetchComments = async ({permalink}) =>{
+export const fetchComments = async (permalink) =>{
     const response = await fetch(`${API_ROOT}${permalink}.json`);
       const json = await response.json();
-      const commentsArr = json[1].data.children;
-
+      const jsonSubArr = json[1];
+      const commentsArr = jsonSubArr.data.children;
+      
       return  commentsArr
 };
 

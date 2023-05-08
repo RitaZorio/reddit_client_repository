@@ -11,18 +11,18 @@ export const Community = ({comm}) =>{
     //makes dispatch() available
     const dispatch = useDispatch();
     //get the subreddit url from comm object
-    const subreddit = comm.url;
+   
 
     //update getPostsTerm and dispatchTrigger from postSlice
-    const handleClick = ()=>{
+    const handleClick = (e)=>{
+        const subreddit = e.target.value;
         dispatch(updateGetPostsTerm(subreddit));
-        dispatch(updateDispatchTrigger());
     }
 
      return (
         <div className="mini-container">
             <img className="thumbnail" src={comm.icon_img}/>
-            <Link onClick={handleClick} className="link">{comm.title}</Link>
+            <button onClick={handleClick} className="link" value={comm.url}>{comm.title}</button>
         </div>
     )
 };

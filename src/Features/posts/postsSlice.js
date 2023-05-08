@@ -8,8 +8,6 @@ const postsSlice = createSlice({
         posts: {},
         isLoading: false,
         hasError: false,
-        //Triggers getPosts() in Post component when changed
-        dispatchTrigger: 0,
         //Dinamic argument for getPosts(). SearchForm and navbar components can change it
         getPostsTerm: '/r/popular/',
     },
@@ -23,13 +21,13 @@ const postsSlice = createSlice({
         state.posts[postId].score = currentScore;
       },
       updateGetPostsTerm(state, action){
-        state.getPostsTerm = 'search.json?q='+action.payload;
+        state.getPostsTerm = action.payload;
       },
       updateShowComments(state, action){
         //retrieve new clicked status
         const{ clikedStatus, postId } = action.payload;
         //update the show_Comments with this cliked status
-        state.posts[postId].show_Comments = clikedStatus;
+        state.posts[postId].show_comments = clikedStatus;
 
       }
     },
@@ -57,7 +55,7 @@ const postsSlice = createSlice({
                         permalink: permalink,
                         is_self: is_self,
                         is_video: is_video,
-                        show_Comments: false
+                        show_comments: false
                       };
                     });
                   })

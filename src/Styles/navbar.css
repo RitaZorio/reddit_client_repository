@@ -1,6 +1,11 @@
 
 /*NAVBAR and Components: Communities, Topics, Community and Topic */
 
+button {
+  all: unset;
+  cursor: pointer;
+}
+
 .nav-container{
   position: sticky;
   top: 0;
