@@ -22,9 +22,6 @@ const postsSlice = createSlice({
         //update the score of the correct post
         state.posts[postId].score = currentScore;
       },
-      updateDispatchTrigger(state, action){
-          state.dispatchTrigger += 1;
-      },
       updateGetPostsTerm(state, action){
         state.getPostsTerm = 'search.json?q='+action.payload;
       },
@@ -87,7 +84,6 @@ export const getPosts = createAsyncThunk(
 export default postsSlice.reducer;
 //create selectors
 export const selectPosts = state => state.posts.posts;
-export const selectDispatchTrigger = state => state.posts.dispatchTrigger;
 export const selectGetPostsTerm = state => state.posts.getPostsTerm;
 //export action creators
 export const {updateScore, updateDispatchTrigger, updateGetPostsTerm, updateShowComments } = postsSlice.actions;

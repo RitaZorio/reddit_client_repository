@@ -103,17 +103,20 @@ const SliderSlice = createSlice({
                 .addCase(getSlides.fulfilled, (state, action) =>{
                   state.isLoading = false;
                   state.hasError = false;
-                  const {id, title, url, is_video, is_self, permalink} = action.payload;
-                  //add new slide to slide state, indexed by id
-                  state.slides[id] = {
-                      id: id,
-                      title: title,
-                      url: url, 
-                      is_video: is_video,
-                      is_self: is_self, 
-                      permalink: permalink
-                    };
-                  })
+                  const slidesArr = action.payload;
+                   slidesArr.map (slide =>{
+                    const {id, title, url, is_video, is_self, permalink} = slide.data;
+                    //add new slide to slide state, indexed by id
+                    state.slides[id] = {
+                        id: id,
+                        title: title,
+                        url: url, 
+                        is_video: is_video,
+                        is_self: is_self, 
+                        permalink: permalink
+                        };
+                  });
+                })
                   //if promise was rejected
                   .addCase(getSlides.rejected, (state, action) =>{
                     state.isLoading = false;
@@ -125,7 +128,7 @@ const SliderSlice = createSlice({
 
 
 //will create actions for each fetch promise lyfecycle, that extrareducers will handle
-const getSlides = createAsyncThunk(
+export const getSlides = createAsyncThunk(
     'slides/getSlides',
     async(arg, {dispatch, getState})=>{
         const payload = await fetchSlides(arg);

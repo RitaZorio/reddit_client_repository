@@ -1,11 +1,21 @@
 import React from "react";
 import { Slide } from "./Slide";
 import '../../Styles/sliders.css';
-import { useSelector } from "react-redux";
-import { selectSlides } from "./slidersSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { selectSlides, getSlides } from "./slidersSlice";
 import { useEffect, useState } from "react";
 
 export const Slider = () =>{
+
+    //make available dispatch()
+    const dispatch= useDispatch();
+
+    //will fetch slides on mounting
+    useEffect(()=>{
+        dispatch(getSlides());
+    }, []);
+
+
     //get all retrieved slide posts
     const slides = useSelector(selectSlides);
     

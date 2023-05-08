@@ -4,7 +4,7 @@ import '../../Styles/searchbar.css';
 import { useDispatch, useSelector} from "react-redux";
 import { useState } from "react";
 import { setStoreSearchTerm, selectSearchTerm } from "./searchSlice";
-import { updateDispatchTrigger, updateGetPostsTerm } from "../posts/postsSlice";
+import { updateGetPostsTerm } from "../posts/postsSlice";
 
 
 export const SearchForm = () =>{
@@ -26,7 +26,6 @@ export const SearchForm = () =>{
          const newInput = searchTerm.replace(/ /g, '%');
          dispatch(setStoreSearchTerm(newInput));
          dispatch(updateGetPostsTerm(newInput));
-         dispatch(updateDispatchTrigger());
         //clear the searchTerm state after dispatching the action to retrieve posts
         setSearchTerm('');
         

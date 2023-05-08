@@ -13,14 +13,13 @@ export const Posts = ()=>{
   //make dispatch available
   const dispatch = useDispatch();
 
-  //retrieves info from the PostsSlice in store
+  //retrieve searchTerm from the PostsSlice in store
   const getPostsArg = useSelector(selectGetPostsTerm);
-  const dispatchTriggerState = useSelector(selectDispatchTrigger);
 
 //Triggers getPosts() each time dispatchTriggerState (from store) changes  
 useEffect(()=>{
  dispatch(getPosts(getPostsArg));
-}, [dispatchTriggerState]);
+}, [getPostsArg]);
 
 //select all post from state
 const posts = useSelector(selectPosts);
@@ -29,6 +28,7 @@ const postsArr = Object.values(posts);
 
 //create an array of post with valid img data
 let validPosts = [];
+//will run evertime posts change
 postsArr.map( post =>{
   if(!post.is_video && !post.is_self){
     validPosts.push(post)

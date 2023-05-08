@@ -43,7 +43,7 @@ export const fetchComments = async ({permalink}) =>{
       const json = await response.json();
       const commentsArr = json[1].data.children;
 
-      return  commentsArr.map(comment => comment.data);
+      return  commentsArr
 };
 
 
@@ -53,5 +53,5 @@ export const fetchSlides = async () =>{
   const json = await response.json();
   const slideArr = json.data.children;
 
-  return slideArr.map(slide => slide.data);
+  return slideArr
 }
