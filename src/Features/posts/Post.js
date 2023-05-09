@@ -13,7 +13,7 @@ import { updateScore } from "./postsSlice";
 import { updateShowComments } from "./postsSlice";
 import { getComments } from "../comments/commentsSlice";
 
-export const Post = ({post, index})=>{
+export const Post = ({post})=>{
 
     //local state to update store state
     const [newScore, setNewScore] = useState(post.score);
@@ -58,7 +58,7 @@ export const Post = ({post, index})=>{
     return(
         <>
             <div className={postClass()}>
-                <div key={index} className="post-frame">
+                <div key={post.name} className="post-frame">
                     {/*if post's url does not include .jpg or .png will not render <img/>*/}
                     {isImg ? <img src={post.url} className="post-img"/> : <></>}
                     <div className="post-foot">

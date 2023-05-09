@@ -14,10 +14,10 @@ export const Comments = ({showComments, postId})=>{
     //make the obj of objs into an array of objs
     const commentsArr = Object.values(comments);
 
-    // //will hold comments based on post's id
+    // //will hold comments based on post's id (and ignore AutoModerator comment)
     let commentsByPost = [];
     commentsArr.map( comment =>{
-        if(comment.link_id === postId){
+        if(comment.link_id === postId && comment.author !== 'AutoModerator'){
             commentsByPost.push(comment);
        }
     });

@@ -7,6 +7,7 @@ const SliderSlice = createSlice({
     name: 'slides',
     initialState: {
         slides:{
+            
             '04':{
                 id:'04',
                 url: 'https://i.ibb.co/w72SMHN/pexels-markus-spiske-3970330.jpg',
@@ -83,7 +84,6 @@ const SliderSlice = createSlice({
                 title: 'Soothing places to visit',
                 is_video: false,
                 is_self: false,
-                permalink: 'url'
             }
         },
     isLoading: false,

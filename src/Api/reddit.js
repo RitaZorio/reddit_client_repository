@@ -8,19 +8,19 @@ export const API_ROOT = 'https://www.reddit.com/';
 //if it doesn't include 'search.json?q=' is a subreddit
   if(!arg.includes('search.json?q=')){
     //fetch will use subreddit endppoint to fetch posts
-    const response = await fetch(`${API_ROOT}${arg}.json`);
+    const response = await fetch(`${API_ROOT}${arg}.json?raw_json=1`);
     const json = await response.json();
-    const postArr = json.data.children;
-
+    const postArr = json.data.children; 
+       
     return postArr
+
   }else{
     //fetch will use search endppoint to fetch posts
-    const response = await fetch(`${API_ROOT}${arg}`);
+    const response = await fetch(`${API_ROOT}${arg}?raw_json=1`);
     const json = await response.json();
-    const postArr = json.data.children;
-
+    const postArr = json.data.children; 
+       
     return postArr
-  
   }
   
 };
@@ -28,7 +28,7 @@ export const API_ROOT = 'https://www.reddit.com/';
 
 //get subreddits to populate Communities component
 export const fetchCommunities = async () =>{
- const response = await fetch(`${API_ROOT}subreddits.json`);
+ const response = await fetch(`${API_ROOT}subreddits.json?raw_json=1`);
  const json = await response.json();
  const subredditArr = json.data.children;
   
@@ -38,7 +38,7 @@ export const fetchCommunities = async () =>{
 
 //get comments for each post using the post's permalink url
 export const fetchComments = async (permalink) =>{
-    const response = await fetch(`${API_ROOT}${permalink}.json`);
+    const response = await fetch(`${API_ROOT}${permalink}.json?raw_json=1`);
       const json = await response.json();
       const jsonSubArr = json[1];
       const commentsArr = jsonSubArr.data.children;
@@ -49,9 +49,19 @@ export const fetchComments = async (permalink) =>{
 
 //get trending posts to make the trending slides
 export const fetchSlides = async () =>{
-  const response = await fetch(`${API_ROOT}r/popular/hot.json`);
+  const response = await fetch(`${API_ROOT}r/pics.json?raw_json=1`);
   const json = await response.json();
   const slideArr = json.data.children;
 
   return slideArr
+};
+
+
+//load more post after the last shown
+export const fetchMorePosts = async ({getPostsArg, lastPostArg}) =>{
+  const response = await fetch(`${API_ROOT}${getPostsArg}.json?after=${lastPostArg}?raw_json=1`);
+  const json = await response.json();
+  const postsArr = json.data.children;
+
+  return postsArr
 }

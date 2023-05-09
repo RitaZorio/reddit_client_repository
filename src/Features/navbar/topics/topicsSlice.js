@@ -6,17 +6,17 @@ const topicsSlice = createSlice({
         topics: {
             gaming: {
                 title: 'Gaming',
-                url: '/t/gaming/',
+                url: 'r/gaming',
                 icon_img: 'https://i.ibb.co/ssQYD9c/icons8-game-controller-64.png'
             },
             celebrity: {
                 title: 'Celebrity',
-                url: '/t/celebrity/',
+                url: 'r/popculturechat',
                 icon_img: 'https://i.ibb.co/VHscXdb/icons8-celebrity-64.png'
             },
             sports: {
                 title: 'Sports',
-                url: '/t/celebrity',
+                url: 'r/sports',
                 icon_img: 'https://i.ibb.co/wgxQb4X/icons8-sport-100.png'
             }
         }

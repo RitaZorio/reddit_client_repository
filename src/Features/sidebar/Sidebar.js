@@ -27,7 +27,7 @@ export const Sidebar = ()=>{
                 </button>
            </div>
            <button id="go-up">
-            Go Up
+            <a href="#search">Go Up</a>
            </button>
         </div>
     )

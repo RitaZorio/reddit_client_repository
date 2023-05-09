@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import '../../Styles/posts.css';
 import  {Post} from './Post';
 import { useSelector, useDispatch } from "react-redux";
-import { selectPosts, selectDispatchTrigger, selectGetPostsTerm} from "./postsSlice";
-import { getPosts } from "./postsSlice";
+import { selectPosts, selectGetPostsTerm} from "./postsSlice";
+import { getPosts, loadMorePosts } from "./postsSlice";
 
 
 
@@ -35,11 +35,25 @@ postsArr.map( post =>{
   }
 });
 
+//get the name of last post in store
+const lastPostName = postsArr[postsArr.length-1];
+//handle "load more" button click
+const handleClick = () =>{
+  let lastPostArg = lastPostName.name;
+  dispatch(loadMorePosts({getPostsArg, lastPostArg}));
+
+};
+
   return(
     <div id="post-container">
-        {validPosts.map((post, index) =>{
-          return <Post post={post} index={index}/>
-        })}
+      {validPosts.map( post =>{
+        return <Post post={post} />
+      })}
+      <div>
+        <button className="right-buttons" id="load-button"onClick={handleClick}>
+           Load more
+        </button>
+      </div>
     </div>
     )
  }

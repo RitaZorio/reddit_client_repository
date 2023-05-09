@@ -75,6 +75,10 @@
     -moz-transform: rotate(-1deg);;
   
   }
+
+  #load-button{
+    margin-bottom: 1rem;
+  }
   
 /**************************************************************************************************/
 /*MEDIA QUERIES*/
@@ -84,8 +88,14 @@
     #post-container{
       grid-column: 1/5;
     }
+
+    #load-button{
+      font-size: 1rem;
+     }
+
   }
 
+ 
 
 @media screen and (max-width: 550px){
     #post-container{
