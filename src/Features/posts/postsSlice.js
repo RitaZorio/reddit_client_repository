@@ -42,6 +42,7 @@ const postsSlice = createSlice({
               .addCase(getPosts.fulfilled, (state, action) =>{
                   state.isLoading = false;
                   state.hasError = false;
+                  state.posts = {};
                   const postsArr = action.payload;
                   postsArr.map( post =>{
                     const {author, name, score, title, url, permalink, is_self, is_video} = post.data;

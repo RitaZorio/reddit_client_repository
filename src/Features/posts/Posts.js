@@ -30,7 +30,7 @@ const postsArr = Object.values(posts);
 let validPosts = [];
 //will run evertime posts change
 postsArr.map( post =>{
-  if(!post.is_video && !post.is_self){
+  if(!post.is_video){
     validPosts.push(post)
   }
 });

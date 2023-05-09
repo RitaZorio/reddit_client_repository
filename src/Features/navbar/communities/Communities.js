@@ -22,9 +22,9 @@ const communitiesArr = Object.values(communities);
 //create an array with communities with valid img data
 let validCommunities = [];
 communitiesArr.map( community =>{
-    if(community.icon_img !== ""){
-        validCommunities.push(community)
-    }
+if(community.icon_img !== ""){
+    validCommunities.push(community);
+    } 
 });
 
 return (
