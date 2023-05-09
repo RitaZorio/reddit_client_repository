@@ -1,7 +1,7 @@
 
 /*NAVBAR and Components: Communities, Topics, Community and Topic */
 
-button {
+.mini-container > button {
   all: unset;
   cursor: pointer;
 }

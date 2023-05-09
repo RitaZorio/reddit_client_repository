@@ -3,6 +3,7 @@
 
 .comment-container{
     margin: 1.2rem 0 1.2rem 0;
+    max-width: 100%;
   }
   .comment{
     display: flex;
@@ -11,7 +12,9 @@
     align-items: center;
     margin-top: 5px;
   }
-  
+  .comment > p {
+    padding-right: 5px;
+  }
   .user{
     margin: 0 8px;
     color:rgba(0, 0, 0, 0.55)

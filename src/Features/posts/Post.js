@@ -53,11 +53,14 @@ export const Post = ({post, index})=>{
      }
     }
 
+    const isImg = post.url.includes('.jpg' || '.png');
+
     return(
         <>
             <div className={postClass()}>
                 <div key={index} className="post-frame">
-                    <img src={post.url} className="post-img"/>
+                    {/*if post's url does not include .jpg or .png will not render <img/>*/}
+                    {isImg ? <img src={post.url} className="post-img"/> : <></>}
                     <div className="post-foot">
                         <p>{post.title}</p>
                         {/*Add later link to the user profile */}   
