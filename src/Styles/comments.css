@@ -20,3 +20,12 @@
     color:rgba(0, 0, 0, 0.55)
   
   }
+
+  @media screen and (max-width: 992px){
+    .comment{
+      display: flex;
+      flex-direction: column-reverse;
+      padding-bottom: 5px;
+    }
+  }
+  
