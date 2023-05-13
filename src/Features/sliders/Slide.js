@@ -1,7 +1,6 @@
 import React from "react";
 import '../../Styles/sliders.css';
 import { Link } from "react-router-dom";
-import { API_ROOT } from "../../Api/reddit";
 import { getPosts } from "../posts/postsSlice";
 import { useDispatch } from "react-redux";
 

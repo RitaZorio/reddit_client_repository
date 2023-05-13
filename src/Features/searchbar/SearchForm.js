@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { ICONS } from "../../Mocks/multimedia";
 import '../../Styles/searchbar.css';
-import { useDispatch, useSelector} from "react-redux";
+import { useDispatch} from "react-redux";
 import { useState } from "react";
-import { setStoreSearchTerm, selectSearchTerm } from "./searchSlice";
+import { setStoreSearchTerm } from "./searchSlice";
 import { updateGetPostsTerm } from "../posts/postsSlice";
 
 
@@ -35,8 +35,8 @@ export const SearchForm = () =>{
     return (
             <form onSubmit={handleSubmit}>
             <input onChange={handleChange} type="text" placeholder="search" value={searchTerm}/>
-            <button  className="icon" type="submit">
-                <img className="icon" id="icon" src={ICONS.search.src}/>
+            <button aria-label="search" className="icon" type="submit">
+                <img className="icon" alt="search-icon" id="icon" src={ICONS.search.src}/>
             </button>
             </form>
         )

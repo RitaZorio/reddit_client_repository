@@ -7,45 +7,6 @@ const SliderSlice = createSlice({
     name: 'slides',
     initialState: {
         slides:{
-            
-            '04':{
-                id:'04',
-                url: 'https://i.ibb.co/w72SMHN/pexels-markus-spiske-3970330.jpg',
-                title: 'this one shouldn\'t show up',
-                is_video: true,
-                is_self: false,
-                permalink: 'url'
-            },
-            '05':{
-                id:'05',
-                url: 'https://i.ibb.co/w72SMHN/pexels-markus-spiske-3970330.jpg',
-                title: 'This is just text',
-                is_video: false,
-                is_self: true,
-                permalink: 'url'
-            },
-            '01':{
-                id: '01',
-                url: 'https://i.ibb.co/w72SMHN/pexels-markus-spiske-3970330.jpg',
-                title: 'Stock-market is Sky-rocketing',
-                is_self: false,
-                is_video: false,
-                permalink: 'url'
-            },
-            '02':{
-                id: '02',
-                url: 'https://i.ibb.co/w72SMHN/pexels-markus-spiske-3970330.jpg',
-                title: 'Elon Musk Tesla market value drops',
-                permalink: 'url'
-            },
-            '03':{
-                id: '03',
-                url: 'https://i.ibb.co/w72SMHN/pexels-markus-spiske-3970330.jpg',
-                title: 'SPEND ALL YOUR MONEY - soon will be worth nothing',
-                is_video: false,
-                is_self: false, 
-                permalink: 'url'
-            },
             '06':{
                 id: '06',
                 url: 'https://images.pexels.com/photos/14297730/pexels-photo-14297730.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',

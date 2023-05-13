@@ -1,14 +1,12 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
 import { ICONS,} from "../../Mocks/multimedia";
 import '../../Styles/posts.css';
 import { postClass } from "./postsSlice";
 import { Link } from "react-router-dom";
 import { API_ROOT } from "../../Api/reddit";
-//Temporarily using Comments. Later comments will be displayed using the Outlet component
 import { Comments } from "../comments/Comments";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateScore } from "./postsSlice";
 import { updateShowComments } from "./postsSlice";
 import { getComments } from "../comments/commentsSlice";
@@ -67,11 +65,11 @@ export const Post = ({post})=>{
                         <Link to={`${API_ROOT}user/${post.author}`} className="user-name link">@{post.author}</Link>   
                     </div>   
                     <div className="socials-container">
-                        <input type="image" src={ICONS.comments.src} className="post-button" onClick={handleComments}/>
+                        <input type="image" src={ICONS.comments.src} className="post-button" aria-label="comments" onClick={handleComments}/>
                         {/*this will track likes and dislike numbers */}
                         <p>{newScore}</p>
-                        <input type="image" src={ICONS.like.src} className="post-button" value="like" onClick={handleScore}/>
-                        <input type="image" src={ICONS.dislike.src} className="post-button" value="dislike" onClick={handleScore}/>
+                        <input type="image" src={ICONS.like.src} className="post-button" aria-label="like" value="like" onClick={handleScore}/>
+                        <input type="image" src={ICONS.dislike.src} className="post-button" aria-label="dislike" value="dislike" onClick={handleScore}/>
                     </div>
                 </div>
             </div>

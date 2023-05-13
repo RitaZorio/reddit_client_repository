@@ -15,8 +15,8 @@ export const Topics = () =>{
         <div className="topics-container">
             <h3 className="nav-title">Hot Topics</h3>
             {/*create Topic component for each topic and pass topic obj as props */}
-            {topicsArr.map( topic =>
-            <Topic topic={topic}/>
+            {topicsArr.map( (topic, index) =>
+            <Topic key={index} topic={topic}/>
             )}
         </div>
     )

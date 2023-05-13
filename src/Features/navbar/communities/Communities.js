@@ -33,7 +33,7 @@ return (
     {/*create only 3 Community components and pass them a comm obj as props */}
     {validCommunities.map((comm, index) =>{
         while(index < 3){
-        return <Community comm={comm}/>
+        return <Community key={index} comm={comm}/>
         }
         }
     )}

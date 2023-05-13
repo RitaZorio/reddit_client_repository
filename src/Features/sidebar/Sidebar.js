@@ -17,12 +17,12 @@ export const Sidebar = ()=>{
     return(
         <div id="sidebar-container">
            <div className="button-container">
-                <button className="right-buttons" value="new" onClick={handleClick}>
-                    <img className="icon-button" src={ICONS.activity.src}/>
+                <button aria-label="subreddit" className="right-buttons" value="new" onClick={handleClick}>
+                    <img alt="icon" className="icon-button" src={ICONS.activity.src}/>
                     Newest
                 </button>
-                 <button className="right-buttons" value="top" onClick={handleClick}>
-                    <img className="icon-button" src={ICONS.heart.src}/>
+                 <button aria-label="subreddit" className="right-buttons" value="top" onClick={handleClick}>
+                    <img alt="icon" className="icon-button" src={ICONS.heart.src}/>
                     Most valued
                 </button>
            </div>

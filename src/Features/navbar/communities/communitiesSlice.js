@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchCommunities } from "../../../Api/reddit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { IMG } from "../../../Mocks/multimedia";
+
 
 export const communitiesSlice = createSlice({
     name: 'communities',

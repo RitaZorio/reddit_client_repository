@@ -37,17 +37,20 @@ postsArr.map( post =>{
 
 //get the name of last post in store
 const lastPostName = postsArr[postsArr.length-1];
+
+
 //handle "load more" button click
 const handleClick = () =>{
   let lastPostArg = lastPostName.name;
+  console.log({ log:1, getPostsArg, lastPostArg});
   dispatch(loadMorePosts({getPostsArg, lastPostArg}));
 
 };
 
   return(
     <div id="post-container">
-      {validPosts.map( post =>{
-        return <Post post={post} />
+      {validPosts.map( (post, index) =>{
+        return <Post key={index} post={post} />
       })}
       <div>
         <button className="right-buttons" id="load-button"onClick={handleClick}>

@@ -36,7 +36,7 @@ export const Slider = () =>{
         const intervalSlide = setInterval(()=>{
             let newSlides = [];
             //randomly pick 3 slides and push them into the array above
-            for(let i = 0; i < 3; i++){
+            for(let i = 0; i < validSlides.length; i++){
               let randomIndex = Math.floor(Math.random() * validSlides.length);
               //if the slide is not already in the array pushes it
               if(!newSlides.includes(validSlides[randomIndex])){
@@ -48,7 +48,7 @@ export const Slider = () =>{
         }
         //update the local state   
         setSlideState(newSlides);    
-        }, 45000);
+        }, 4000);
 
         //return a fn that clean up the side-effect upon the component un-mounts
         return () => clearInterval(intervalSlide);
@@ -58,11 +58,9 @@ export const Slider = () =>{
         <div className="slider-container">
             <h2>Trending</h2>
             <div className="slides">
-            {slideState.map( (slide, index) =>{
-                {/*this prevents the slide to render all slides on mounting the app, since the initial local state is ALL validSlides */}
-                while( index < 3 ){
-                    return <Slide slide={slide} />
-                }
+                {/* slice corta el array slidestate del 0 al 3, y por cada uno de esos pinta un return con map*/}
+            {slideState.slice(0,3).map( (slide, index) =>{
+                    return <Slide key={index} slide={slide} />
             })} 
             </div>
         </div>

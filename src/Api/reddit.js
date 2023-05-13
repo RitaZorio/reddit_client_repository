@@ -58,8 +58,8 @@ export const fetchSlides = async () =>{
 
 
 //load more post after the last shown
-export const fetchMorePosts = async ({getPostsArg, lastPostArg}) =>{
-  const response = await fetch(`${API_ROOT}${getPostsArg}.json?after=${lastPostArg}?raw_json=1`);
+export const fetchMorePosts = async (obj) =>{
+  const response = await fetch(`${API_ROOT}${obj.getPostsArg}.json?after=${obj.lastPostArg}?raw_json=1`);
   const json = await response.json();
   const postsArr = json.data.children;
 

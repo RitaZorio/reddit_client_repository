@@ -119,8 +119,8 @@ export const getPosts = createAsyncThunk(
 //thunk action creator for loadMorePosts
 export const loadMorePosts = createAsyncThunk(
   'posts/loadMorePosts',
-  async({subreddit, arg}, {dispatch, getState}) =>{
-    const payload = await fetchMorePosts({subreddit, arg});
+  async({getPostsArg, lastPostArg}, {dispatch, getState}) =>{
+    const payload = await fetchMorePosts({getPostsArg, lastPostArg});
     return payload
   }
 );

@@ -1,9 +1,7 @@
 import React from "react";
-import {thumbnails} from "../../../Mocks/multimedia";
 import '../../../Styles/navbar.css';
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { updateDispatchTrigger, updateGetPostsTerm } from "../../posts/postsSlice";
+import { updateGetPostsTerm } from "../../posts/postsSlice";
 
 export const Topic = ({topic}) =>{
  

@@ -1,8 +1,6 @@
 import React from "react";
-import {thumbnails } from "../../../Mocks/multimedia";
 import '../../../Styles/navbar.css';
-import { Link } from "react-router-dom";
-import { updateGetPostsTerm, updateDispatchTrigger } from "../../posts/postsSlice";
+import { updateGetPostsTerm} from "../../posts/postsSlice";
 import {useDispatch } from "react-redux";
 
 //Right now this component use mock imgs. Will render img and community name from reddits API received by Communities
