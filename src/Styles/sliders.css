@@ -9,11 +9,13 @@ h2{
   margin: 0;
 }
   .slide-img{
-    /*display: block erase blanl space under the img*/
+    /*display: block erase blank space under the img*/
     display: block;
-    width:100%;
-    max-width: 300px;
-    max-height: 200px;
+    position: absolute;
+    top: 0;
+    width:98%;
+    height: 100%;
+    object-fit: cover;
     transition-duration: 0.4s;
     flex-shrink: 3;
   }
@@ -35,15 +37,19 @@ h2{
 
   .slide{
     position: relative;
+    width: 98%;
+    height: 0;
+    padding-top: calc(100% * (4/24));
   }
       
   .slide-title{
     color: white;
-    font-size: bold;
+    font-weight: bold;
     margin: 0;
+    width: 98%;
     position: absolute;
     bottom: 0.3rem;
-    left: 0.5rem;
+    left: 0.3rem;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   }
   
