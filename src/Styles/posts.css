@@ -6,10 +6,10 @@
     align-items: center;
     grid-row-start: 3;
     grid-column: 2 / 5;
+    margin-top: 30px;
   }
   
   .post-frame{
-    margin-top: 30px;
     background-color: whitesmoke;
     padding: 20px 20px 10px 20px ;
     box-shadow: 8px 4px 4px rgba(0, 0, 0, 0.1);
@@ -85,8 +85,11 @@
   
 /*POST positioning depending on screen size*/
 @media screen and (max-width: 992px){
+
     #post-container{
+      margin-top: 40px;
       grid-column: 1/5;
+      margin-top: 30px;
     }
 
     #load-button{
@@ -95,10 +98,10 @@
 
   }
 
- 
 
 @media screen and (max-width: 550px){
     #post-container{
+      margin-top: 20px;
       grid-column: 1/6;
       margin: 4vw;
       }

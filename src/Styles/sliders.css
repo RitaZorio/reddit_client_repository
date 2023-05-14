@@ -1,88 +1,182 @@
-
 /*SLIDER and Components: Slider and Slide*/
-.slider-container{
+.slider-container {
   grid-column: 2 / 6;
- grid-row: 2;
-  }
+  grid-row: 2;
+}
 
-h2{
+h2 {
   margin: 0;
 }
-  .slide-img{
-    /*display: block erase blank space under the img*/
-    display: block;
-    position: absolute;
-    top: 0;
-    width:98%;
-    height: 100%;
-    object-fit: cover;
-    transition-duration: 0.4s;
-    flex-shrink: 3;
-  }
-  
-  .slide-img:hover{
+
+.slide-img {
+  /*display: block erase blank space under the img*/
+  display: block;
+  /*next properties allow to crop img so they all have the same aspect-ratio*/
+  position: absolute;
+  top: 0;
+  /*width is set to 98% so there is a gap between imgs*/
+  width: 98%;
+  height: 100%;
+  object-fit: cover;
+  transition-duration: 0.4s;
+}
+
+.slide-img:hover {
   opacity: 0.7;
   cursor: pointer;
-  }
-  
-  .slide:hover{
-    font-size: 1.3rem;
-  }
-  
-  .slides{
-    display: flex;
-    justify-content: space-evenly;
-  
-  }
+}
 
-  .slide{
-    position: relative;
-    width: 98%;
-    height: 0;
-    padding-top: calc(100% * (4/24));
+.slide:hover {
+  font-size: 1.3rem;
+}
+
+.slides {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+
+.slide {
+  /*properties of this container allow to crop img to make them share the same aspect ratio (width/height)*/
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: calc(100% * (4/24));
+}
+
+.slide-title {
+  color: white;
+  font-weight: bold;
+  font-size: 1vw;
+  margin: 0;
+  /*since imgs have 98% width of parent component, text must have the same not to overflow the img width*/
+  width: 98%;
+  position: absolute;
+  bottom: 0.3rem;
+  left: 0.3rem;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+
+/*LOADING SPINNER*/
+.lds-spinner {
+  color: official;
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-spinner div {
+  transform-origin: 40px 40px;
+  animation: lds-spinner 1.2s linear infinite;
+}
+.lds-spinner div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 37px;
+  width: 6px;
+  height: 18px;
+  border-radius: 20%;
+  background: #f53e15;
+}
+.lds-spinner div:nth-child(1) {
+  transform: rotate(0deg);
+  animation-delay: -1.1s;
+}
+.lds-spinner div:nth-child(2) {
+  transform: rotate(30deg);
+  animation-delay: -1s;
+}
+.lds-spinner div:nth-child(3) {
+  transform: rotate(60deg);
+  animation-delay: -0.9s;
+}
+.lds-spinner div:nth-child(4) {
+  transform: rotate(90deg);
+  animation-delay: -0.8s;
+}
+.lds-spinner div:nth-child(5) {
+  transform: rotate(120deg);
+  animation-delay: -0.7s;
+}
+.lds-spinner div:nth-child(6) {
+  transform: rotate(150deg);
+  animation-delay: -0.6s;
+}
+.lds-spinner div:nth-child(7) {
+  transform: rotate(180deg);
+  animation-delay: -0.5s;
+}
+.lds-spinner div:nth-child(8) {
+  transform: rotate(210deg);
+  animation-delay: -0.4s;
+}
+.lds-spinner div:nth-child(9) {
+  transform: rotate(240deg);
+  animation-delay: -0.3s;
+}
+.lds-spinner div:nth-child(10) {
+  transform: rotate(270deg);
+  animation-delay: -0.2s;
+}
+.lds-spinner div:nth-child(11) {
+  transform: rotate(300deg);
+  animation-delay: -0.1s;
+}
+.lds-spinner div:nth-child(12) {
+  transform: rotate(330deg);
+  animation-delay: 0s;
+}
+@keyframes lds-spinner {
+  0% {
+    opacity: 1;
   }
-      
-  .slide-title{
-    color: white;
-    font-weight: bold;
-    margin: 0;
-    width: 98%;
-    position: absolute;
-    bottom: 0.3rem;
-    left: 0.3rem;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  100% {
+    opacity: 0;
   }
-  
+}
+
 /*********************************************************************************/
 /*MEDIA QUERIES*/
 
 /*Slider positioning and slides margin*/
-@media screen and (max-width: 992px){
-  .slider-container{
+@media screen and (max-width: 992px) {
+  .slider-container {
     grid-column: 1/6;
   }
 
-  h2{
+  h2 {
     margin-left: 10px;
   }
 
-  .slide{
+  .slide {
     margin: 0 3px 0 3px;
+  }
+
+  .slide-title{
+    font-size: 2vw;
   }
 }
 
 /*add margin to slider container*/
-@media screen and (max-width: 550px){
-  .slider-container{
-       margin: 4vw;
+@media screen and (max-width: 550px) {
+  .slider-container {
+    margin: 2vw;
+  }
+
+  .slide{
+    padding-top: calc(100% * (6/24));
   }
 
 }
 
 /*Hide slider*/
-@media screen and (max-width: 450px){
-  
-  .slider-container{
+@media screen and (max-width: 450px) {
+
+  .slider-container {
     display: none;
   }
 }

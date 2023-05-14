@@ -156,6 +156,14 @@
 
 }
 
+
+@media screen and (max-width: 992px){
+  .logo{
+    max-width: auto;
+    max-height: 50px;
+  }
+}
+
 /*Searchbar logo and title*/
 @media only screen and (max-width: 550px){
 

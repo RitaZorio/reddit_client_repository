@@ -5,8 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectPosts, selectGetPostsTerm} from "./postsSlice";
 import { getPosts, loadMorePosts } from "./postsSlice";
 
-
-
 //Right now this component is return mock posts. Probably will return posts with the info from the API received through PostSlice
 export const Posts = ()=>{
 

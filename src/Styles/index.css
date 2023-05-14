@@ -28,6 +28,16 @@ code {
 }
 
 
+@media screen and (max-width: 1200px){
+  #body-container{
+    display: grid;
+    grid-template-columns: 1.3fr repeat(4, 2fr);
+    grid-template-rows: 100px 180px 1fr;
+    row-gap: 8px;
+    column-gap: 20px;
+  }
+}
+
 @media screen and (max-width: 992px){
   #body-container{
   display: grid;

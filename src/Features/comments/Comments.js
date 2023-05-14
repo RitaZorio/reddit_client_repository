@@ -3,7 +3,8 @@ import { Comment } from "./Comment";
 import '../../Styles/comments.css';
 import { useSelector } from 'react-redux';
 import { selectComments } from "./commentsSlice";
-
+import { IsLoading } from "../sliders/IsLoading";
+import { areLoading } from "../../Api/reddit";
 
 //will render in Post Outlet component if user clicks comments button
 export const Comments = ({showComments, postId})=>{

@@ -1,9 +1,11 @@
 import React from "react";
 import { Slide } from "./Slide";
+import { IsLoading } from "./IsLoading";
 import '../../Styles/sliders.css';
 import { useSelector, useDispatch } from "react-redux";
-import { selectSlides, getSlides } from "./slidersSlice";
+import { selectSlides, getSlides} from "./slidersSlice";
 import { useEffect, useState } from "react";
+import { areLoading } from "../../Api/reddit";
 
 export const Slider = () => {
 
@@ -14,7 +16,6 @@ export const Slider = () => {
     useEffect(() => {
         dispatch(getSlides());
     }, []);
-
 
     //get all retrieved slide posts
     const slides = useSelector(selectSlides);
@@ -54,6 +55,7 @@ export const Slider = () => {
         <div className="slider-container">
             <h2>Trending</h2>
             <div className="slides">
+                {areLoading('slide') && <IsLoading/>}
                 {/* slice corta el array slidestate del 0 al 3, y por cada uno de esos pinta un return con map*/}
                 {slideState.slice(0, 3).map((slide, index) => {
                     return <Slide key={index} slide={slide} />
