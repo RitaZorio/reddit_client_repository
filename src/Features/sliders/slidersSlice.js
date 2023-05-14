@@ -6,47 +6,7 @@ import { fetchSlides } from "../../Api/reddit";
 const SliderSlice = createSlice({
     name: 'slides',
     initialState: {
-        slides:{
-            '06':{
-                id: '06',
-                url: 'https://images.pexels.com/photos/14297730/pexels-photo-14297730.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                title: 'Bangs are back! Discover new hairStyle trends',
-                is_video: false,
-                is_self: false,
-                permalink: 'url'
-            },
-            '07':{
-                id:'07',
-                url:'https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg',
-                title: 'Prevent eyestrain with this tips',
-                is_video: false,
-                is_self: false,
-                permalink: 'url'
-            },
-            '08':{
-                id:'08',
-                url:'https://images.pexels.com/photos/14744772/pexels-photo-14744772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                title: 'Pirate\'s Treasure Adventures in Ibiza',
-                is_video: false,
-                is_self: false,
-                permalink: 'url'
-            },
-            '09':{
-                id:'09',
-                url:'https://images.pexels.com/photos/7511802/pexels-photo-7511802.jpeg',
-                title: 'Did you know this about Oranges?',
-                is_video: false,
-                is_self: false,
-                permalink: 'url'
-            },
-            '10':{
-                id:'10',
-                url:'https://images.pexels.com/photos/15685794/pexels-photo-15685794.png',
-                title: 'Soothing places to visit',
-                is_video: false,
-                is_self: false,
-            }
-        },
+        slides:{},
     isLoading: false,
     hasError: false
     },
@@ -100,5 +60,14 @@ export const getSlides = createAsyncThunk(
 
 //export the slice reducer
 export default SliderSlice.reducer;
-//create and export the slide selector
-export const selectSlides = state => state.slides.slides;
+//create selector that filters out invalid slides
+export const selectSlides = state => {
+    let validSlides = []
+    const slidesArr = Object.values(state.slides.slides);
+    slidesArr.map(slide => {
+        if (!slide.is_video && !slide.is_self) {
+            validSlides.push(slide);
+        }
+    });
+    return validSlides;
+};

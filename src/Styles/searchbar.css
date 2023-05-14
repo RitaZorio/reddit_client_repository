@@ -55,10 +55,7 @@
     display: block;
   }
 
- #search{
-  position: fixed;
- }
-
+ 
   input[type="checkbox"] {
     position: absolute;
     display: block;

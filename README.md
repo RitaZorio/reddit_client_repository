@@ -36,11 +36,15 @@ Left: mobile view with navbar open. Center: mobile view with posts shown. Right:
 * Figma
 
 ### For the app:
+* HTML
+* CSS
+* JavaScript
 * React
 * Redux
+* Frameworks: react-router, react-redux
 
 ### For tests:
 * Jest
-* Enzyme
-* Mocca
+* React Testing Library
+
 
