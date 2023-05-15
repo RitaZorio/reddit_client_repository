@@ -66,14 +66,15 @@ export const fetchMorePosts = async (obj) =>{
   return postsArr
 }
 
-//check if there is any component (passed as argument) rendered in the DOM yet
+//check if there is any component (passed as argument) rendered in the DOM yet (used to render a Loading component)
 export const areLoading = (arg)=>{
- let isLoading = document.getElementsByClassName(arg);
- let value
- if( isLoading.length === 0){
-     value = true
- }else{
-     value = false
- }
- return value
-};
+  let isLoading = document.getElementsByClassName(arg);
+  let value
+  if( isLoading.length === 0){
+      value = true
+  }else{
+      value = false
+  }
+  return value
+ };
+ 

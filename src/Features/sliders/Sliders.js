@@ -28,6 +28,7 @@ export const Slider = () => {
         setSlideState(arr);
     };
 
+    
     //will set up an interval when the component mounts that'll change local state with new slides every minute
     useEffect(() => {
         const intervalSlide = setInterval(() => {
@@ -55,11 +56,13 @@ export const Slider = () => {
         <div className="slider-container">
             <h2>Trending</h2>
             <div className="slides">
-                {areLoading('slide') && <IsLoading/>}
-                {/* slice corta el array slidestate del 0 al 3, y por cada uno de esos pinta un return con map*/}
+                {/* slice return new array with items with index between 0-2, and map each one of them*/}
                 {slideState.slice(0, 3).map((slide, index) => {
+                    areLoading('slide');
                     return <Slide key={index} slide={slide} />
                 })}
+                { areLoading('slide') && <IsLoading/>}
+                
             </div>
         </div>
     )
