@@ -60,12 +60,13 @@ export const getSlides = createAsyncThunk(
 
 //export the slice reducer
 export default SliderSlice.reducer;
+
 //create selector that filters out invalid slides
 export const selectSlides = state => {
     let validSlides = []
     const slidesArr = Object.values(state.slides.slides);
     slidesArr.map(slide => {
-        if (!slide.is_video && !slide.is_self) {
+        if (slide.url.includes('.jpg' || '.png')) {
             validSlides.push(slide);
         }
     });

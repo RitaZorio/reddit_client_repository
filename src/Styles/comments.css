@@ -21,6 +21,10 @@
   
   }
 
+  .comment:hover{
+    box-shadow: 5px 0px 10px 0px #aaa;
+  }
+
   @media screen and (max-width: 992px){
     .comment{
       display: flex;
