@@ -2,7 +2,7 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectPosts, updateScore } from "./posts/postsSlice";
-import { selectComments } from "./comments/commentsSlice";
+import { selectComments, selectCommentsStatus } from "./comments/commentsSlice";
 import { getComments } from "./comments/commentsSlice";
 import { Comment } from "./comments/Comment";
 import { API_ROOT } from "../Api/reddit";
@@ -25,6 +25,7 @@ export const CompletePost = () => {
 
     //retrieve comments from store
     const comments = useSelector(selectComments);
+
 
     //will hold comments based on post's id (and ignore AutoModerator comment)
     let commentsByPost = []
@@ -67,10 +68,10 @@ export const CompletePost = () => {
 
     return (
         <>
-            <div className="rotate1" id="complete-post">
+            <div id="complete-post">
                 <div key={post.name} className="post-frame">
                     {/*if post's url does not include .jpg or .png will not render <img/>*/}
-                    {isImg ? <img src={post.url} className="post-img" /> : <></>}
+                    {isImg ? <img src={post.url} className="post-img" id="complete-post-img"/> : <></>}
                     <div className="post-foot">
                         <p>{post.title}</p>
                         {/*Add later link to the user profile */}

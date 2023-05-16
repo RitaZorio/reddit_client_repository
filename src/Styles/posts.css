@@ -1,123 +1,150 @@
+/*------POSTS-and-Post-components-------------------*/
+#post-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-row-start: 3;
+  grid-column: 2 / 5;
+  margin-top: 30px;
+}
 
-/*POSTS and Post components*/
-#post-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    grid-row-start: 3;
-    grid-column: 2 / 5;
-    margin-top: 30px;
-  }
-  
-  .post-frame{
-    background-color: whitesmoke;
-    padding: 20px 20px 10px 20px ;
-    box-shadow: 8px 4px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .socials-container{
-    display: flex;
-    flex-shrink: 3;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-  }
+.post-frame {
+  background-color: whitesmoke;
+  padding: 20px 20px 10px 20px;
+  box-shadow: 8px 4px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
 
-  .socials-container > * {
-    margin: 4px;
-  }
-  
-  .post-foot{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .post-foot > p{
-    margin: 0;
-    font-size: clamp(0.9rem, 4vw, 1.3em);
+.socials-container {
+  display: flex;
+  flex-shrink: 3;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
 
-    }
-  
-  .user-name{
-    margin: 0;
-    font-size: clamp(0.9rem, 3vw, 1rem);
-    color: rgba(0, 0, 0, 0.55);
-  }
-  
-  .post-img{
-    max-width: 100%;
-    max-height: 600px;
-    object-fit: cover;
-  }
-  .post-button:hover{
-    cursor: point;
-  }
-  /* will tilt the post based on the post class, which is given randomly */
-  .rotate1{
-    -webkit-transform: rotate(1.4deg);
-    -moz-transform: rotate(1deg);
-  }
-  
-  .rotate2{
-    -webkit-transform: rotate(-1deg);
-    -moz-transform: rotate(-1.5deg);
-  }
-  
-  .rotate3{
-    -webkit-transform: rotate(0.3);
-    -moz-transform: rotate(0.8);
-  }
-  
-  .rotate4{
-      -webkit-transform: rotate(-1.9deg);
-    -moz-transform: rotate(-1deg);;
-  
-  }
+.socials-container>* {
+  margin: 4px;
+}
 
-  #load-button{
-    margin-bottom: 1rem;
-  }
+.post-foot {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-  #complete-post{
-    grid-column: 2/5;
-    grid-row-start: 3;
-    margin-top: 30px;
-  }
-
-  
-  
-/**************************************************************************************************/
-/*MEDIA QUERIES*/
-  
-/*POST positioning depending on screen size*/
-@media screen and (max-width: 992px){
-
-    #post-container{
-      margin-top: 40px;
-      grid-column: 1/5;
-      margin-top: 30px;
-    }
-
-    #load-button{
-      font-size: 1rem;
-     }
-
-  }
-
-
-@media screen and (max-width: 550px){
-    #post-container{
-      margin-top: 20px;
-      grid-column: 1/6;
-      margin: 4vw;
-      }
+.post-foot>p {
+  margin: 0;
+   /*clamp makes up min and max font size*/
+  font-size: clamp(0.9rem, 4vw, 1.3em);
 
 }
 
-@media screen and (max-width: 450px){
-  #post-container{
+.user-name {
+  margin: 0;
+  /*clamp makes up min and max font size*/
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.post-img {
+  max-width: 100%;
+  max-height: 600px;
+  object-fit: cover;
+}
+
+.post-button:hover {
+  cursor: point;
+}
+
+
+/*---CLASSES-FROM-POSTCLASS()----------------------------------------------------------------*/
+/* will tilt the post based on the post class, which is given randomly */
+.rotate1 {
+  -webkit-transform: rotate(1.4deg);
+  -moz-transform: rotate(1deg);
+}
+
+.rotate2 {
+  -webkit-transform: rotate(-1deg);
+  -moz-transform: rotate(-1.5deg);
+}
+
+.rotate3 {
+  -webkit-transform: rotate(0.3);
+  -moz-transform: rotate(0.8);
+}
+
+.rotate4 {
+  -webkit-transform: rotate(-1.9deg);
+  -moz-transform: rotate(-1deg);
+  ;
+
+}
+
+/*---LOAD BUTTON-------------------*/
+#load-button {
+  margin-bottom: 1rem;
+}
+
+
+/*--COMPLETEPOST-COMPONENT----------------------------------------------*/
+/*will replace Posts when viewing single post*/
+#complete-post {
+  grid-column: 2/5;
+  grid-row-start: 3;
+  margin-top: 30px;
+}
+
+#complete-post-img{
+  max-width: fit-content;
+  max-height: fit-content;
+}
+
+/*----MEDIA-QUERIES--------------------------------------*/
+
+/*POST and COMPLETEPOST positioning depending on screen size*/
+@media screen and (max-width: 992px) {
+
+  #post-container {
+    margin-top: 40px;
+    grid-column: 1/5;
+  }
+
+  #load-button {
+    font-size: 1rem;
+  }
+
+  #complete-post {
+    margin-top: 40px;
+    grid-column: 1/5;
+  }
+  
+}
+
+
+
+@media screen and (max-width: 550px) {
+  #post-container {
+    margin-top: 20px;
+    grid-column: 1/6;
+    margin: 4vw;
+  }
+
+  #complete-post {
+    margin-top: 20px;
+    grid-column: 1/6;
+    margin: 4vw;
+  }
+
+}
+
+@media screen and (max-width: 450px) {
+  #post-container {
+    grid-row: 2/3;
+  }
+
+  #complete-post {
     grid-row: 2/3;
   }
 }
