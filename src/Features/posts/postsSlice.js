@@ -129,7 +129,6 @@ export default postsSlice.reducer;
 export const selectPosts = state => state.posts.posts;
 export const selectGetPostsTerm = state => state.posts.getPostsTerm;
 export const selectPostsStatus = state => state.posts.isLoading;
-export const selectShowComment = (state, postId) => state.posts[postId].show_comments;
 //export action creators
 export const { updateScore, updateDispatchTrigger, updateGetPostsTerm, updateShowComments } = postsSlice.actions;
 

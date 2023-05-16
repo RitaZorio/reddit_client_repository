@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectPosts, selectGetPostsTerm, selectPostsStatus } from "./postsSlice";
 import { getPosts, loadMorePosts } from "./postsSlice";
 import { IsLoading } from "../IsLoading";
+import { useParams } from "react-router-dom";
 
 //Right now this component is return mock posts. Probably will return posts with the info from the API received through PostSlice
 export const Posts = () => {
@@ -40,6 +41,18 @@ export const Posts = () => {
   //get the name of last post in store
   const lastPostName = postsArr[postsArr.length - 1];
 
+  //retrieve relative path obj
+  const { postId } = useParams();
+  //check if there is a relative path
+  const checkPostId = () =>{
+    if(postId !== undefined){
+      return true
+    }
+  }
+  //style object: if checkPostId is true, hide Posts
+  const style =  checkPostId() ? {
+    display: 'none'
+  } : {};
 
   //handle "load more" button click
   const handleClick = () => {
@@ -49,14 +62,14 @@ export const Posts = () => {
   };
 
   return (
-    <div id="post-container">
+    <div style={style} id="post-container">
       {/*If postsLoadStatus is true, show Loading component. If not, show posts */}
-      {postsLoadStatus ? <IsLoading/> : validPosts.map((post, index) => {
+      {postsLoadStatus ? <IsLoading /> : validPosts.map((post, index) => {
         return <Post key={index} post={post} />
       })}
       <div>
         {/*If postsLoadStatus if false, show "Load more" button */}
-        { !postsLoadStatus ? <button className="right-buttons" id="load-button" onClick={handleClick}>
+        {!postsLoadStatus ? <button className="right-buttons" id="load-button" onClick={handleClick}>
           Load more
         </button> : <></>}
       </div>

@@ -57,13 +57,16 @@ export const Post = ({ post }) => {
         <>
             <div className={postClass()}>
                 <div key={post.name} className="post-frame">
-                    {/*if post's url does not include .jpg or .png will not render <img/>*/}
-                    {isImg ? <img src={post.url} className="post-img" /> : <></>}
-                    <div className="post-foot">
+                    <Link to={postId} className="link post-link">
+                        {/*if post's url does not include .jpg or .png will not render <img/>*/}
+                        {isImg ? <img src={post.url} className="post-img" /> : <></>}
                         <p>{post.title}</p>
+                    </Link>
+                    <div className="post-foot">
                         {/*Add later link to the user profile */}
                         <Link to={`${API_ROOT}user/${post.author}`} className="user-name link">@{post.author}</Link>
                     </div>
+
                     <div className="socials-container">
                         <input type="image" src={ICONS.comments.src} className="post-button" aria-label="comments" onClick={handleComments} />
                         {/*this will track likes and dislike numbers */}

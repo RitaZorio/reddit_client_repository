@@ -47,3 +47,9 @@ code {
   column-gap: 20px;
 }
 } 
+
+@media screen and (max-width: 450px) {
+  .slides > .isLoading {
+    display: none 
+  }
+};

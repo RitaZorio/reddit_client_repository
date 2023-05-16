@@ -79,6 +79,14 @@
   #load-button{
     margin-bottom: 1rem;
   }
+
+  #complete-post{
+    grid-column: 2/5;
+    grid-row-start: 3;
+    margin-top: 30px;
+  }
+
+  
   
 /**************************************************************************************************/
 /*MEDIA QUERIES*/
