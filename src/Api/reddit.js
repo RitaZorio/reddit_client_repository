@@ -1,54 +1,57 @@
 
+
+//ALL FETCH CALLS
+
 //main URL
 export const API_ROOT = 'https://www.reddit.com/';
 
 //Get posts
- export const fetchPosts= async (arg) =>{
-//checks if arg is a subreddit or a searchTerm
-//if it doesn't include 'search.json?q=' is a subreddit
-  if(!arg.includes('search.json?q=')){
+export const fetchPosts = async (arg) => {
+  //checks if arg is a subreddit or a searchTerm
+  //if it doesn't include 'search.json?q=' is a subreddit
+  if (!arg.includes('search.json?q=')) {
     //fetch will use subreddit endppoint to fetch posts
     const response = await fetch(`${API_ROOT}${arg}.json?raw_json=1`);
     const json = await response.json();
-    const postArr = json.data.children; 
-       
+    const postArr = json.data.children;
+
     return postArr
 
-  }else{
+  } else {
     //fetch will use search endppoint to fetch posts
     const response = await fetch(`${API_ROOT}${arg}?raw_json=1`);
     const json = await response.json();
-    const postArr = json.data.children; 
-       
+    const postArr = json.data.children;
+
     return postArr
   }
-  
+
 };
 
 
 //get subreddits to populate Communities component
-export const fetchCommunities = async () =>{
- const response = await fetch(`${API_ROOT}subreddits.json?raw_json=1`);
- const json = await response.json();
- const subredditArr = json.data.children;
-  
+export const fetchCommunities = async () => {
+  const response = await fetch(`${API_ROOT}subreddits.json?raw_json=1`);
+  const json = await response.json();
+  const subredditArr = json.data.children;
+
   return subredditArr
 };
 
 
 //get comments for each post using the post's permalink url
-export const fetchComments = async (permalink) =>{
-    const response = await fetch(`${API_ROOT}${permalink}.json?raw_json=1`);
-      const json = await response.json();
-      const jsonSubArr = json[1];
-      const commentsArr = jsonSubArr.data.children;
-      
-      return  commentsArr
+export const fetchComments = async (permalink) => {
+  const response = await fetch(`${API_ROOT}${permalink}.json?raw_json=1`);
+  const json = await response.json();
+  const jsonSubArr = json[1];
+  const commentsArr = jsonSubArr.data.children;
+
+  return commentsArr
 };
 
 
 //get trending posts to make the trending slides
-export const fetchSlides = async () =>{
+export const fetchSlides = async () => {
   const response = await fetch(`${API_ROOT}r/pics.json?raw_json=1`);
   const json = await response.json();
   const slideArr = json.data.children;
@@ -58,23 +61,25 @@ export const fetchSlides = async () =>{
 
 
 //load more post after the last shown
-export const fetchMorePosts = async (obj) =>{
-  const response = await fetch(`${API_ROOT}${obj.getPostsArg}.json?after=${obj.lastPostArg}?raw_json=1`);
+export const fetchMorePosts = async (obj) => {
+  const response = await fetch(`${API_ROOT}${obj.getPostsArg}.json?after=${obj.lastPostArg}&raw_json=1`);
   const json = await response.json();
   const postsArr = json.data.children;
 
   return postsArr
 }
 
+
+//NOT FETCH CALL 
+
 //check if there is any component (passed as argument) rendered in the DOM yet (used to render a Loading component)
-export const areLoading = (arg)=>{
+export const areLoading = (arg) => {
   let isLoading = document.getElementsByClassName(arg);
   let value
-  if( isLoading.length === 0){
-      value = true
-  }else{
-      value = false
+  if (isLoading.length === 0) {
+    value = true
+  } else {
+    value = false
   }
   return value
- };
- 
+};

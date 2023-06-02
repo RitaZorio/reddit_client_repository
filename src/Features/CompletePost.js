@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectPosts, updateScore } from "./posts/postsSlice";
@@ -8,6 +8,8 @@ import { Comment } from "./comments/Comment";
 import { API_ROOT } from "../Api/reddit";
 import { ICONS } from "../Mocks/multimedia";
 import '../Styles/posts.css';
+import { IsLoading } from "./IsLoading";
+import { areLoading } from "../Api/reddit";
 
 //will render a single post and its comments on a new page view
 export const CompletePost = () => {
@@ -22,30 +24,8 @@ export const CompletePost = () => {
     const posts = useSelector(selectPosts);
     //get correct post based on postId
     const post = posts[postId];
-
-    //retrieve comments from store
-    const comments = useSelector(selectComments);
-
-
-    //will hold comments based on post's id (and ignore AutoModerator comment)
-    let commentsByPost = []
-    const sortComments = () => {
-
-        Object.values(comments).map(comment => {
-            if (comment.link_id === postId && comment.author !== 'AutoModerator') {
-                commentsByPost.push(comment);
-            }
-        });
-        return commentsByPost
-    };
-
-    //if no comments for this post are in the store, trigger a comment fetch and sort again comments
-    if (commentsByPost.length === 0) {
-        dispatch(getComments(post.permalink));
-        sortComments();
-
-    }
-
+    //get post permalink to dispatch getComments if necessary
+    const permalink = post.permalink;
 
     //will increment / drecrement score based on the social button clicked
     const handleScore = (e) => {
@@ -64,6 +44,33 @@ export const CompletePost = () => {
     };
 
 
+    //retrieve comments from store
+    const comments = useSelector(selectComments);
+    //retrieve isLoading from store (YET TO IMPLEMENT BELOW!!)
+    const commentsStatus = useSelector(selectCommentsStatus);
+
+
+    //will hold comments based on post's id (and ignore AutoModerator comment)
+    let commentsByPost = []
+    const sortComments = () => {
+
+        Object.values(comments).map(comment => {
+            if (comment.link_id === postId && comment.author !== 'AutoModerator') {
+                commentsByPost.push(comment);
+            }
+        });
+        return commentsByPost
+    };
+
+    //if no comments for this post are in the store, trigger a comment fetch and sort again comments
+    if (commentsByPost.length === 0) {
+        dispatch(getComments(permalink));
+        sortComments();
+
+    }
+ 
+
+    //if post is not an img will not render <img/>
     const isImg = post.url.includes('.jpg' || '.png');
 
     return (
@@ -71,7 +78,7 @@ export const CompletePost = () => {
             <div id="complete-post">
                 <div key={post.name} className="post-frame">
                     {/*if post's url does not include .jpg or .png will not render <img/>*/}
-                    {isImg ? <img src={post.url} className="post-img" id="complete-post-img"/> : <></>}
+                    {isImg ? <img src={post.url} className="post-img" id="complete-post-img" /> : <></>}
                     <div className="post-foot">
                         <p>{post.title}</p>
                         {/*Add later link to the user profile */}
@@ -86,8 +93,9 @@ export const CompletePost = () => {
                     </div>
                 </div>
                 <div className="comment-container" id="complete-post-comments">
-                {commentsByPost.map(comment => <Comment comment={comment} />)}
-            </div>
+                    {/* YET TO IMPLEMENT!! if commentsStatus is true, render <IsLoading/>, else render comments */}
+                    {commentsByPost.map((comment, index) => <Comment key={index} comment={comment} />)}
+                </div>
             </div>
         </>
     )

@@ -55,7 +55,7 @@ export const Post = ({ post }) => {
 
     return (
         <>
-            <div className={postClass()}>
+            <div className={postClass(post.title)}>
                 <div key={post.name} className="post-frame">
                     <Link to={postId} className="link post-link">
                         {/*if post's url does not include .jpg or .png will not render <img/>*/}

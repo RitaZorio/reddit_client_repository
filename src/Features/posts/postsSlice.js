@@ -78,23 +78,28 @@ const postsSlice = createSlice({
         state.hasError = false;
         //retrieve post array from payload
         const postsArr = action.payload;
-        //for each post in the array
-        postsArr.map(post => {
-          //extract these variables
-          const { author, name, score, title, url, permalink, is_self, is_video } = post.data;
-          //add new post the store, indexed by name
-          state.posts[name] = {
-            author: author,
-            name: name,
-            score: score,
-            title: title,
-            url: url,
-            permalink: permalink,
-            is_self: is_self,
-            is_video: is_video,
-            show_comments: false
-          };
-        })
+      //for each post in the array
+      const postsToAdd = {};
+      postsArr.forEach(post => {
+        //extract these variables
+        const { author, name, score, title, url, permalink, is_self, is_video } = post.data;
+        //add new post the store, indexed by name
+        postsToAdd[name] = {
+          author: author,
+          name: name,
+          score: score,
+          title: title,
+          url: url,
+          permalink: permalink,
+          is_self: is_self,
+          is_video: is_video,
+          show_comments: false
+        };
+      });
+      state.posts = {
+        ...state.posts,
+        ...postsToAdd,
+      };
       })
       .addCase(loadMorePosts.rejected, (state, action) => {
         state.isLoading = false;
@@ -136,18 +141,15 @@ export const { updateScore, updateDispatchTrigger, updateGetPostsTerm, updateSho
 
 
 //will return randomly a class to apply different styles in css to the posts
-export const postClass = () => {
-  let random = Math.floor(Math.random() * 3);
-  let rotate
-  if (random === 0) {
-    rotate = 'rotate1';
-  } else if (random === 1) {
-    rotate = 'rotate2';
-  } else if (random === 2) {
-    rotate = 'rotate3';
-  } else {
-    rotate = 'rotate4';
+export const postClass = (title) => {
+  const pseudoRandom = title.split('').reduce((sum, letter) => sum + letter.charCodeAt(0), 0) % 4;
+  if (pseudoRandom === 0) {
+    return 'rotate1';
+  } else if (pseudoRandom === 1) {
+    return 'rotate2';
+  } else if (pseudoRandom === 2) {
+    return 'rotate3';
   }
-  return rotate
-};
+  return 'rotate4';
+}
 
