@@ -57,6 +57,7 @@ export const getSlides = createAsyncThunk(
     }
 );
 
+export const selectIsLoading = state => state.slides.isLoading;
 
 //export the slice reducer
 export default SliderSlice.reducer;
