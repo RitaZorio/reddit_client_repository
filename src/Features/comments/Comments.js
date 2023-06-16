@@ -29,9 +29,11 @@ export const Comments = ({ showComments, postId }) => {
     //will show/hide comments when comment button is clicked
     return (
         <div className="comment-container">
-            {commentsLoadStatus && !showComments ? <IsLoading /> : commentsByPost.map(
-                (comment, index) => showComments ?
-                    <Comment key={index} comment={comment} /> : <></>
+            {commentsLoadStatus && showComments
+            ? <IsLoading />
+            : commentsByPost.map((comment, index) => showComments
+                ? <Comment key={index} comment={comment} />
+                : <></>
             )}
         </div>
     )

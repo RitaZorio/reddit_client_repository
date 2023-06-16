@@ -65,8 +65,8 @@ export const Posts = () => {
     //this style will hide posts if there is a relative path to a single post
     <div style={style} id="post-container">
       {/*If postsLoadStatus is true, show Loading component. If not, show posts */}
-      {postsLoadStatus ? <IsLoading /> : validPosts.map((post, index) => {
-        return <Post key={index} post={post} />
+      {postsLoadStatus ? <IsLoading /> : validPosts.map(post => {
+        return <Post key={post.name} post={post} />
       })}
       <div>
         {/*If postsLoadStatus if false, show "Load more" button */}

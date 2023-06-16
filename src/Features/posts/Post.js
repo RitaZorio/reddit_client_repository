@@ -38,15 +38,16 @@ export const Post = ({ post }) => {
     };
 
 
-    const [clikedStatus, setClikedStatus] = useState(true);
+    const [clikedStatus, setClikedStatus] = useState(false);
 
     //will toggle clickedStatus on each click
     const handleComments = () => {
-        setClikedStatus(!clikedStatus);
-        dispatch(updateShowComments({ clikedStatus, postId }));
+        const newClikedStatus = !clikedStatus;
+        setClikedStatus(newClikedStatus);
+        dispatch(updateShowComments({ clikedStatus: newClikedStatus, postId }));
 
         //if show_comments is true will dispatch fetch for comments with this post permalink endpoint
-        if (clikedStatus === true) {
+        if (newClikedStatus === true) {
             dispatch(getComments(post.permalink));
         }
     }
@@ -56,7 +57,7 @@ export const Post = ({ post }) => {
     return (
         <>
             <div className={postClass(post.title)}>
-                <div key={post.name} className="post-frame">
+                <div className="post-frame">
                     <Link to={postId} className="link post-link">
                         {/*if post's url does not include .jpg or .png will not render <img/>*/}
                         {isImg ? <img src={post.url} className="post-img" /> : <></>}
